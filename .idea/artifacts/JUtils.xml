@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JUtils">
+    <output-path>$USER_HOME$/Test-Server/plugins/</output-path>
+    <root id="archive" name="JUtils.jar">
+      <element id="module-output" name="Challenge" />
+    </root>
+  </artifact>
+</component>

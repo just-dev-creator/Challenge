@@ -1,0 +1,33 @@
+name: JUtils
+version: ${project.version}
+main: dev.just.challenge.Main
+api-version: 1.16
+authors: [just]
+
+commands:
+  events:
+    description: Möglichkeit zum einstellen von allem.
+  heal:
+    description: Heilt einen Spieler
+  timer:
+    description: Verwaltet den Timer.
+  reset:
+    description: Setzt die Welten zurück.
+  spec:
+    description: Macht dich für alle anderen Spieler unsichtbar
+  nick:
+    description: Ändere deinen Namen.
+  test:
+    description: Zeigt hilfreiche Informationen für Developer an
+  gamemode:
+    description: Ändert deinen Spielmodus
+  gm:
+    description: Ändert deinen Spielmodus
+  dimension:
+    description: Wechsle zwischen verschiedenen Dimensionen
+  beta:
+    description: Informationen zur Beta-Testphase
+  forceeffect:
+    description: Zeigt den aktuellen Effekt an
+  position:
+    description: Speichert eine Position ab.
