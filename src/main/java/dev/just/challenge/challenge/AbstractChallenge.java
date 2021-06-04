@@ -1,43 +1,26 @@
 package dev.just.challenge.challenge;
 
+import dev.just.challenge.Main;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @author justCoding
+ * @author github.com/anweisen
+ * @author github.com/kxmischesdomi
+ * Heavily inspired by the people listed above
+ */
 public abstract class AbstractChallenge {
-    private final String name;
-    private final ItemStack menuItem;
-    private boolean isEnabled;
+    protected static final Main plugin = Main.getPlugin;
 
-    protected AbstractChallenge(String challengeName, ItemStack item) {
-        this.name = challengeName;
-        this.menuItem = item;
-    }
-    protected AbstractChallenge(String challengeName, Material material) {
-        this.name = challengeName;
-        this.menuItem = new ItemStack(material);
-    }
+    private static final Map<Class<? extends AbstractChallenge>, AbstractChallenge> firstInstanceByClass = new HashMap<>();
+    private static final boolean irgnoreCreativePlayers;
+    private static final boolean ignoreSpectatorPlayers;
 
-    public void onEnable() {
+    protected final MenuType menu;
 
-    }
-    public void onDisable() {
-
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public ItemStack getMenuItem() {
-        return this.menuItem;
-    }
-
-    public boolean isEnabled() {
-        return this.isEnabled;
-    }
-
-    public void setEnabled(boolean isEnabled) {
-        this.isEnabled = isEnabled;
-    }
 }

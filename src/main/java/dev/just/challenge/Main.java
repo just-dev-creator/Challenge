@@ -23,6 +23,7 @@ import java.util.Set;
 public final class Main extends JavaPlugin {
     public static ArrayList<Player> hide = new ArrayList<>();
     public static Location dorfSpawn;
+    private ScoreboardManager scoreboardManager;
 
     @Override
     public void onLoad() {
@@ -58,6 +59,7 @@ public final class Main extends JavaPlugin {
                     ForceGleichungen.main();
                 }
             }, 10);
+            scoreboardManager = new ScoreboardManager();
         }
     }
 
@@ -83,6 +85,7 @@ public final class Main extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         saveTimer();
+        if (scoreboardManager != null) scoreboardManager.
     }
 
     private void registerCommands() {
