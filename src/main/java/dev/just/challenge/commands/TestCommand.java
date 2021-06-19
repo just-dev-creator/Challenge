@@ -4,7 +4,6 @@ import dev.just.challenge.Main;
 import dev.just.challenge.utils.Config;
 import dev.just.challenge.utils.ScoreboardManager;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.Timer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

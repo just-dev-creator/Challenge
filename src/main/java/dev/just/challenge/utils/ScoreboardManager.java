@@ -1,6 +1,5 @@
 package dev.just.challenge.utils;
 
-import dev.just.challenge.challenge.ChallengeBossBar;
 import dev.just.challenge.utilities.Parcour;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,9 +8,6 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ScoreboardManager {
     static org.bukkit.scoreboard.ScoreboardManager manager = Bukkit.getScoreboardManager();
@@ -22,21 +18,9 @@ public class ScoreboardManager {
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         for (Player all : Bukkit.getOnlinePlayers()) {
             Score score = objective.getScore(ChatColor.GRAY + all.getName());
-            if (!Parcour.checkpoints.containsKey(all)) {
-                score.setScore(0);
-            } else {
-                score.setScore(Parcour.checkpoints.get(all));
-            }
+            score.setScore(Parcour.checkpoints.getOrDefault(all, 0));
         }
         for (Player player : Bukkit.getOnlinePlayers())
             player.setScoreboard(scoreboard);
     }
-
-
-
-
-
-    // this is the new code
-    private final List<ChallengeBossBar> bossbars = new ArrayList<>();
-    private Chall
 }

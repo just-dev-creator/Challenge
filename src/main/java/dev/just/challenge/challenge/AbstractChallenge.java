@@ -23,4 +23,23 @@ public abstract class AbstractChallenge {
 
     protected final MenuType menu;
 
+    private String name;
+
+    static {
+        irgnoreCreativePlayers = true;
+        ignoreSpectatorPlayers = true;
+    }
+
+    public AbstractChallenge(MenuType menu) {
+        this.menu = menu;
+        firstInstanceByClass.put(this.getClass(), this);
+    }
+
+    public MenuType getType() {
+        return menu;
+    }
+
+    public ItemStack getDisplayItem() {
+        return
+    }
 }
