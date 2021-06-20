@@ -11,7 +11,7 @@ public abstract class AbstractChallenge {
     public AbstractChallenge(String name) {
         this.name = name;
         this.configName = name.toLowerCase().replace(" ", "_");
-        if ((boolean) this.getConfig("enabled")) {
+        if (!this.containsConfig("enabled") || (boolean) this.getConfig("enabled")) {
             this.isEnabled = true;
         }
     }

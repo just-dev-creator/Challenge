@@ -12,17 +12,15 @@ import java.util.List;
 public class ChallengeAPI {
     public static List<AbstractChallenge> challenges = new ArrayList<>();
     public static void onLoad() {
+        ChallengeConfig.setup();
         setup();
         register();
-        ChallengeConfig.setup();
-
     }
     private static void setup() {
         challenges.add(new TestChallenge());
     }
     private static void register() {
         for (AbstractChallenge challenge : challenges) {
-            if (challenge instanceof Listener) Bukkit.getPluginManager().registerEvents((Listener) challenge, Main.getPlugin(Main.class));
             challenge.enable();
         }
     }

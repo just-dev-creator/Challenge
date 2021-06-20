@@ -19,6 +19,7 @@ public class ChallengeConfig {
                 e.printStackTrace();
             }
         }
+        configuration = YamlConfiguration.loadConfiguration(file);
     }
 
     public static YamlConfiguration getConfiguration() {

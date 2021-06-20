@@ -59,6 +59,7 @@ public final class Main extends JavaPlugin {
                 }
             }, 10);
         }
+        ChallengeAPI.onLoad();
     }
 
     public static String getPrefix() {
@@ -83,7 +84,6 @@ public final class Main extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         saveTimer();
-        if (scoreboardManager != null) scoreboardManager.
     }
 
     private void registerCommands() {
