@@ -1,45 +1,54 @@
 package dev.just.challenge.challenge;
 
 import dev.just.challenge.Main;
-import org.bukkit.Material;
-import org.bukkit.entity.Item;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * @author justCoding
- * @author github.com/anweisen
- * @author github.com/kxmischesdomi
- * Heavily inspired by the people listed above
- */
 public abstract class AbstractChallenge {
-    protected static final Main plugin = Main.getPlugin;
-
-    private static final Map<Class<? extends AbstractChallenge>, AbstractChallenge> firstInstanceByClass = new HashMap<>();
-    private static final boolean irgnoreCreativePlayers;
-    private static final boolean ignoreSpectatorPlayers;
-
-    protected final MenuType menu;
-
-    private String name;
-
-    static {
-        irgnoreCreativePlayers = true;
-        ignoreSpectatorPlayers = true;
+    private final String name;
+    private final String configName;
+    public boolean isEnabled = false;
+    public AbstractChallenge(String name) {
+        this.name = name;
+        this.configName = name.toLowerCase().replace(" ", "_");
+        if ((boolean) this.getConfig("enabled")) {
+            this.isEnabled = true;
+        }
     }
 
-    public AbstractChallenge(MenuType menu) {
-        this.menu = menu;
-        firstInstanceByClass.put(this.getClass(), this);
+    public void enable() {
+        this.setEnabled(true);
+        if (this instanceof Listener) {
+            Bukkit.getPluginManager().registerEvents((Listener) this, Main.getPlugin(Main.class));
+        }
+        this.onEnable();
+    }
+    public void disable() {
+        this.setEnabled(false);
+        this.onDisable();
     }
 
-    public MenuType getType() {
-        return menu;
+    /**
+     * Will be executed when the challenge is started
+     */
+    public abstract void onEnable();
+    /**
+     * Will be executed when the challenge is stopped
+     */
+    public abstract void onDisable();
+
+    private void setConfig(String path, Object value) {
+        ChallengeConfig.set(this.configName + "." + path, value);
+    }
+    private boolean containsConfig(String path) {
+        return ChallengeConfig.contains(this.configName + "." + path);
+    }
+    private Object getConfig(String path) {
+        return ChallengeConfig.get(this.configName + "." + path);
     }
 
-    public ItemStack getDisplayItem() {
-        return
+    private void setEnabled(boolean enabled) {
+        this.isEnabled = enabled;
+        this.setConfig("enabled", enabled);
     }
 }
