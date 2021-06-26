@@ -20,8 +20,5 @@ public class ChallengeAPI {
         challenges.add(new TestChallenge());
     }
     private static void register() {
-        for (AbstractChallenge challenge : challenges) {
-            challenge.enable();
-        }
     }
 }

@@ -2,6 +2,7 @@ package dev.just.challenge;
 
 import dev.just.challenge.beta.BetaCommand;
 import dev.just.challenge.beta.JoinEvent;
+import dev.just.challenge.challenge.inventory.InventoryCommand;
 import dev.just.challenge.challenges.*;
 import dev.just.challenge.commands.*;
 import dev.just.challenge.giveop.ChatListener;
@@ -50,6 +51,7 @@ public final class Main extends JavaPlugin {
                 ScoreboardManager.checkpoints();
             }
             loadTimer();
+            findVillage();
 //        loadSettings();
             Bukkit.getScheduler().runTaskLater(this, new Runnable() {
                 @Override
@@ -60,6 +62,19 @@ public final class Main extends JavaPlugin {
             }, 10);
         }
         ChallengeAPI.onLoad();
+    }
+
+    private void findVillage() {
+        if (!Settings.settings.get(Settings.ItemType.DORFSPAWN).equals(Settings.ItemState.ENABLED)) return;
+        dorfSpawn = Bukkit.getWorld("world").locateNearestStructure(Bukkit.getWorld("world").getSpawnLocation(), StructureType.VILLAGE, 10000, true);
+        for (int i = 50; i < 256; i++) {
+            if (Bukkit.getWorld("world").getBlockAt(dorfSpawn.getBlockX(), i + 1, dorfSpawn.getBlockY()).getType().isAir()) {
+                if (Bukkit.getWorld("world").getBlockAt(dorfSpawn.getBlockX(), i + 2, dorfSpawn.getBlockY()).getType().isAir()) {
+                    dorfSpawn.setY(i);
+                    break;
+                }
+            }
+        }
     }
 
     public static String getPrefix() {
@@ -99,6 +114,7 @@ public final class Main extends JavaPlugin {
         getCommand("dimension").setExecutor(new DimensionCommand());
         getCommand("beta").setExecutor(new BetaCommand());
         getCommand("position").setExecutor(new PositionCommand());
+        getCommand("newevents").setExecutor(new InventoryCommand());
 
         getCommand("events").setTabCompleter(new EventsCommand());
         getCommand("heal").setTabCompleter(new HealCommand());
@@ -141,6 +157,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new dev.just.challenge.listeners.ChatListener(), this);
         pluginManager.registerEvents(new NoRemoveChallenge(), this);
         pluginManager.registerEvents(new SpecCommand(), this);
+        pluginManager.registerEvents(new dev.just.challenge.challenge.inventory.ChallengeInventory(), this);
     }
 
     private void loadTimer() {

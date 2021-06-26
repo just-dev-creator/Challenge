@@ -31,3 +31,5 @@ commands:
     description: Zeigt den aktuellen Effekt an
   position:
     description: Speichert eine Position ab.
+  newevents:
+    description: Die neue Version des Events-Managers

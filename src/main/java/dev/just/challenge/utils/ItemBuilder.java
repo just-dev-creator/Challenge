@@ -9,6 +9,7 @@ import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -239,6 +240,21 @@ public class ItemBuilder {
         }catch(ClassCastException expected){}
         return this;
     }
+
+    public ItemBuilder addFlag(ItemFlag flag) {
+        ItemMeta im = is.getItemMeta();
+        im.addItemFlags(flag);
+        is.setItemMeta(im);
+        return this;
+    }
+
+    public ItemBuilder removeFlag(ItemFlag flag) {
+        ItemMeta im = is.getItemMeta();
+        im.removeItemFlags(flag);
+        is.setItemMeta(im);
+        return this;
+    }
+
     /**
      * Retrieves the itemstack from the ItemBuilder.
      * @return The itemstack created/modified by the ItemBuilder instance.

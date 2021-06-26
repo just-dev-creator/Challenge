@@ -7,13 +7,14 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class JoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         event.setJoinMessage(ChatColor.GRAY + "[" + ChatColor.GREEN + "+" + ChatColor.GRAY + "] " + ChatColor.DARK_GRAY + event.getPlayer().getName());
         if (Settings.settings.get(Settings.ItemType.DORFSPAWN).equals(Settings.ItemState.ENABLED) && !Timer.isRunning()) {
-            event.getPlayer().teleport(Main.dorfSpawn);
+            event.getPlayer().teleport(Main.dorfSpawn, PlayerTeleportEvent.TeleportCause.PLUGIN);
         }
     }
 }

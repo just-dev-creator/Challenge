@@ -38,7 +38,7 @@ public class EventsCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(ChatColor.GREEN +  "✘ Hilfestellung zur Friends-Version von JUtils. ✘");
             sender.sendMessage(ChatColor.RED + "✘ Challenges ✘");
             sender.sendMessage(ChatColor.GRAY + "Enderdrache-Tod: " + ChatColor.DARK_GRAY + "Die Challenge ist beim Tod des Enderdrachens abgeschlossen.");
-            sender.sendMessage(ChatColor.GRAY + "NoInv: " + ChatColor.DARK_GRAY + "Die Challenge ist beim benutzen seines Inventares oder dem öffnen eines anderen beendet.");
+            sender.sendMessage(ChatColor.GRAY + "NoInv: " + ChatColor.DARK_GRAY + "Die Challenge ist beim benutzen seines Inventares oder dem Öffnen eines anderen beendet.");
             sender.sendMessage(ChatColor.RED + "✘ Utilities ✘");
             sender.sendMessage(ChatColor.GRAY + "Schadens-Hinweis: " + ChatColor.DARK_GRAY + "Jeder Schaden wird im Schaden geloggt.");
             sender.sendMessage(ChatColor.GRAY + "Keine Regeneration: " + ChatColor.DARK_GRAY + "Kein Spieler regeneriert mehr natürlich. ");
