@@ -2,10 +2,13 @@ package dev.just.challenge.challenge;
 
 import dev.just.challenge.Main;
 import dev.just.challenge.utils.ItemBuilder;
+import dev.just.challenge.utils.Timer;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -43,10 +46,16 @@ public abstract class AbstractChallenge {
     public void enable() {
         this.setEnabled(true);
         this.onEnable();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            Utils.sendSettingsChange(player, "Die Challenge " + ChatColor.YELLOW + this.name + ChatColor.DARK_GRAY + " wurde aktiviert.");
+        }
     }
     public void disable() {
         this.setEnabled(false);
         this.onDisable();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            Utils.sendSettingsChange(player, "Die Challenge " + ChatColor.YELLOW + this.name + ChatColor.DARK_GRAY + " wurde deaktiviert.");
+        }
     }
 
     /**
@@ -59,9 +68,7 @@ public abstract class AbstractChallenge {
     public abstract void onDisable();
 
     public ItemStack getMenuItem() {
-        System.out.println(this.isEnabled);
         if (this.isEnabled) {
-            System.out.println("Returning true");
             return(new ItemBuilder(this.icon)
                     .addEnchant(Enchantment.ARROW_DAMAGE, 1)
                     .addFlag(ItemFlag.HIDE_ATTRIBUTES)
@@ -69,7 +76,6 @@ public abstract class AbstractChallenge {
                     .setName(ChatColor.GREEN + this.name)
                     .toItemStack());
         } else {
-            System.out.println("Returning false");
             return(new ItemBuilder(this.icon)
                     .setName(ChatColor.RED + this.name)
                     .removeEnchantment(Enchantment.ARROW_DAMAGE)
@@ -90,5 +96,9 @@ public abstract class AbstractChallenge {
     private void setEnabled(boolean enabled) {
         this.isEnabled = enabled;
         this.setConfig("enabled", enabled);
+    }
+
+    public boolean isActive() {
+        return this.isEnabled && Timer.isRunning();
     }
 }
