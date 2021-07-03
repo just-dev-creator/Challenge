@@ -1,3 +1,40 @@
-© just.dev, 2020
+                              Limited License
 
-You are not allowed to decompile this project.
+For viewing the source code of the application “JUtils”, a minecraft plugin.
+
+Copyright (c) 2019 - 2021 just-dev-creator. All rights reserved.
+
+  The Source Code is made available solely for the purpose of being viewed for
+personal, non-commercial purposes on a non-exclusive, non-sublicensable and
+non-transferrable basis. Beyond that, no further rights are granted hereunder.
+
+  The viewer shall not (and shall not cause any third party to), directly or
+indirectly: (a) reproduce or otherwise process the Source Code; (b) share or
+communicate to the public the Source Code; (c) copy the Source Code on a public
+or shared network; (d) modify, adjust, or translate the Source Code or create
+derivative works that are based on the Source Code; or (e) otherwise use the
+Source Code for commercial or non-commercial purposes.
+
+  justCoding does not assume any express or implied liability or warranty
+for the Source Code.
+
+  justCoding shall be entitled to revoke this limited license at any time
+without prior notice.
+
+  The removal or modification of any proprietary notices from or in connection
+with the Source Code shall be prohibited.
+
+  The mandatory laws of the country of the viewer’s usual place of residence
+(i.e. the provisions of the law of that country which cannot be derogated from 
+by agreement) shall apply. In all other respects, the laws of the Federal 
+Republic of Germany shall apply. Any disputes arising out of or in connection 
+with this limited license shall be submitted to the competent courts of Berlin, 
+Germany.
+
+  The viewer acknowledges that certain components of the Source Code have been
+created by third parties who (i) limit the use of such third party components 
+under separate licensing terms, or (ii) allow the use of such third party 
+components in deviation from this limited license (in particular, so called Free 
+and Open Source Software, hereinafter “Third Party Components”). To such extent, 
+such licensing terms shall prevail over this limited license and the viewer is 
+solely responsible for complying therewith.
