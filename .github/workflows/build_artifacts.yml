@@ -21,6 +21,7 @@ jobs:
           path: target/*.jar
   test:
     runs-on: ubuntu-latest
+    environment: mc_server
     steps:
       - name: Test secrets
-        run: echo {{ mc_server.TEST }}
+        run: echo {{ secrets.TEST }}
