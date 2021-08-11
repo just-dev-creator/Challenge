@@ -48,6 +48,8 @@ jobs:
         run: "echo eula=true > eula.txt"
       - name: Move plugin to folder
         run: "mv ./Challenge-*.jar ./plugins"
+      - name: Enable testing mode
+        run: touch isGitHub
       - name: Start server
         timeout-minutes: 1
         run: "java -jar paperclip.jar"
