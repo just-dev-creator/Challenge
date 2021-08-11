@@ -6,6 +6,7 @@
 
 package dev.just.challenge.utils;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -57,6 +58,6 @@ public class LicenseSystem {
         return new AdvancedLicense((String) configuration.get("LICENSE-KEY"), "https://predestinarian-rati.000webhostapp.com/verify.php", plugin).register();
     }
     private static void log(String string) {
-        System.out.println(string);
+        Bukkit.getLogger().info(string);
     }
 }
