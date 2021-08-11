@@ -1,9 +1,3 @@
-/*
- * Copyright (c) 2021. justCoding
- * All rights reserved.
- * You may not copy, modify, distribute or decompile this code without the written permission of the author.
- */
-
 package dev.just.challenge.utils;
 
 import java.util.ArrayList;
