@@ -23,4 +23,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test secrets
-        run: echo {{ secrets.TEST }}
+        run: echo {{ mc_server.TEST }}
