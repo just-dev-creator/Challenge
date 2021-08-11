@@ -14,8 +14,8 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '16'
+      - name: Build using maven
+        run: mvn clean package
       - uses: actions/upload-artifact@v2
         with:
           path: target/*.jar
-      - name: Build using maven
-        run: mvn clean package
