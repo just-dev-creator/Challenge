@@ -26,3 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: mc_server
     needs: [build]
+    steps:
+      - name: Download the plugin jar
+        uses: actions/download-artifact@v2
+        with:
+          name: plugin_jar
+      - name: will be removed later
+        run: ls
