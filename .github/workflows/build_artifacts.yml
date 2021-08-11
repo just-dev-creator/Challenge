@@ -47,7 +47,7 @@ jobs:
       - name: Agree to EULA
         run: "echo eula=true > eula.txt"
       - name: Move plugin to folder
-        run: "mv target/Challenge-*.jar plugins"
+        run: "mv ./Challenge-*.jar ./plugins"
       - name: Start server
         timeout-minutes: 1
         run: "java -jar paperclip.jar"
