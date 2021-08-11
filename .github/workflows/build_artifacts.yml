@@ -24,7 +24,6 @@ jobs:
   test:
     name: Test the plugin using a actual minecraft server
     runs-on: ubuntu-latest
-    environment: mc_server
     needs: [build]
     steps:
       - name: Download the plugin jar
@@ -51,5 +50,5 @@ jobs:
       - name: Enable testing mode
         run: touch isGitHub
       - name: Start server
-        timeout-minutes: 2
+        timeout-minutes: 1.5
         run: "java -jar paperclip.jar"
