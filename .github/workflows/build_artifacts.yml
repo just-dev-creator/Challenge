@@ -1,4 +1,4 @@
-name: Compile the plugin
+name: Compile and test the plugin
 on:
   push:
     branches:
@@ -19,3 +19,8 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           path: target/*.jar
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test secrets
+        run: echo {{ secrets.TEST }}
