@@ -2,7 +2,7 @@
 
 For viewing the source code of the application “JUtils”, a minecraft plugin.
 
-Copyright (c) 2019 - 2021 just-dev-creator. All rights reserved.
+Copyright (c) 2021 just-dev-creator. All rights reserved.
 
   The Source Code is made available solely for the purpose of being viewed for
 personal, non-commercial purposes on a non-exclusive, non-sublicensable and

@@ -1,0 +1,6 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="notice" value="Copyright (c) &amp;#36;originalComment.match(&quot;Copyright \(c\) (\d+)&quot;, 1, &quot;-&quot;)&amp;#36;today.year. justCoding &#10;All rights reserved.&#10;You may not copy, modify, distribute or decompile this code without the written permission of the author." />
+    <option name="myName" value="Plugin" />
+  </copyright>
+</component>
