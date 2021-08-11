@@ -9,10 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
           java-version: '16'
+      - uses: actions/upload-artifact@v2
+        with:
+          path: target/*.jar
       - name: Build using maven
         run: mvn clean package
