@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    name: Build the artifacts with maven
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,10 +19,10 @@ jobs:
         run: mvn clean package
       - uses: actions/upload-artifact@v2
         with:
-          path: target/*.jar
+          path: target/Challenge-*.jar
+          name: plugin_jar
   test:
+    name: Test the plugin using a actual minecraft server
     runs-on: ubuntu-latest
     environment: mc_server
-    steps:
-      - name: Test secrets
-        run: echo ${{ secrets.TEST }}
+    needs: [build]
