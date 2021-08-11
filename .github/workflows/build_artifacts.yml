@@ -31,6 +31,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: plugin_jar
+      - name: Download java
+        uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: "16"
       - name: Download PaperMC
         run: wget "https://papermc.io/api/v1/paper/1.17.1/latest/download" -O paperclip.jar
       - name: Create plugins directory
