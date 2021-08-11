@@ -36,7 +36,7 @@ jobs:
       - name: Create plugins directory
         run: mkdir plugins
       - name: Create JUtils direcotry
-        run: mkdir JUtils
+        run: mkdir plugins/JUtils
       - name: Put license key
         run: "echo LICENSE-KEY: ${{ secrets.PLUGIN_LICENSE_KEY }} > plugins/JUtils/license.yml"
       - name: Agree to EULA
