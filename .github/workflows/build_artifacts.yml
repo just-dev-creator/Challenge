@@ -24,4 +24,4 @@ jobs:
     environment: mc_server
     steps:
       - name: Test secrets
-        run: echo {{ secrets.TEST }}
+        run: echo ${{ secrets.TEST }}
