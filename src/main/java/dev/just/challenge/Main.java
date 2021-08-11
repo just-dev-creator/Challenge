@@ -58,7 +58,6 @@ public final class Main extends JavaPlugin {
             }
             loadTimer();
             findVillage();
-//        loadSettings();
             Bukkit.getScheduler().runTaskLater(this, new Runnable() {
                 @Override
                 public void run() {
@@ -66,6 +65,7 @@ public final class Main extends JavaPlugin {
                     ForceGleichungen.main();
                 }
             }, 10);
+            GithubTests.stopServer();
         }
         ChallengeAPI.onLoad();
     }
