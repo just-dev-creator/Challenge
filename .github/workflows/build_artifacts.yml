@@ -46,6 +46,8 @@ jobs:
         run: "echo LICENSE-KEY: ${{ secrets.PLUGIN_LICENSE_KEY }} > plugins/JUtils/license.yml"
       - name: Agree to EULA
         run: "echo eula=true > eula.txt"
+      - name: Move plugin to folder
+        run: "mv target/Challenge-*.jar plugins"
       - name: Start server
-        timeout-minutes: 2
+        timeout-minutes: 1
         run: "java -jar paperclip.jar"
