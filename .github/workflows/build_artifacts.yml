@@ -1,0 +1,18 @@
+name: Compile the plugin
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@latest
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '16'
+      - name: Build using maven
+        run: mvn clean package
