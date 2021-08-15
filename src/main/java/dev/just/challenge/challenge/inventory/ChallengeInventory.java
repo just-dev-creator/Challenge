@@ -1,32 +1,37 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
 
 package dev.just.challenge.challenge.inventory;
 
-import dev.just.challenge.ChallengeAPI;
 import dev.just.challenge.challenge.AbstractChallenge;
 import org.bukkit.Bukkit;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static dev.just.challenge.ChallengeAPI.challenges;
+
 public class ChallengeInventory implements Listener {
     public static Inventory getInventory() {
-        ArrayList<AbstractChallenge> challenges1 = new ArrayList<>();
-        challenges1.add(ChallengeAPI.challenges.get(0));
         try {
             List<InventoryPage> pages = new ArrayList<>();
-            pages.add(new InventoryPage(0, "Challenges | 1", null, null, challenges1));
-            pages.add(new InventoryPage(1, "Challenges | 2", null, null));
-            pages.add(new InventoryPage(2, "Challenges | 3", null, null));
-            pages.add(new InventoryPage(3, "Challenges | 4", null, null));
+            pages.add(new InventoryPage(0, "Challenges | 1", null, null));
+            int j = 1;
+            int cpage = 0;
+            for (AbstractChallenge challenge : challenges) {
+                if (j > 18) {
+                    cpage++;
+                    pages.add(new InventoryPage(cpage, "Challenges | " + (cpage + 1), null, null));
+                    j = 1;
+                }
+                pages.get(cpage).addEntry(challenge);
+                j++;
+            }
             int i = 0;
             for (InventoryPage page : pages) {
                 System.out.println(page.getTitle() + " - " + i);
