@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -19,6 +19,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * Helper to create challenges more easily
+ */
 public abstract class AbstractChallenge {
     public final String name;
     private final String configName;
@@ -29,6 +32,9 @@ public abstract class AbstractChallenge {
         this.configName = name.toLowerCase().replace(" ", "_");
         if (!this.containsConfig("enabled") || (boolean) this.getConfig("enabled")) {
             this.isEnabled = true;
+            if (this instanceof Listener) {
+                Bukkit.getPluginManager().registerEvents((Listener) this, Main.getPlugin(Main.class));
+            }
         }
         this.icon = new ItemStack(Material.STRUCTURE_VOID);
     }
@@ -37,6 +43,9 @@ public abstract class AbstractChallenge {
         this.configName = name.toLowerCase().replace(" ", "_");
         if (!this.containsConfig("enabled") || (boolean) this.getConfig("enabled")) {
             this.isEnabled = true;
+            if (this instanceof Listener) {
+                Bukkit.getPluginManager().registerEvents((Listener) this, Main.getPlugin(Main.class));
+            }
         }
         this.icon = icon;
     }
@@ -45,11 +54,17 @@ public abstract class AbstractChallenge {
         this.configName = name.toLowerCase().replace(" ", "_");
         if (!this.containsConfig("enabled") || (boolean) this.getConfig("enabled")) {
             this.isEnabled = true;
+            if (this instanceof Listener) {
+                Bukkit.getPluginManager().registerEvents((Listener) this, Main.getPlugin(Main.class));
+            }
         }
         this.icon = new ItemStack(icon, 1);
     }
 
     public void enable() {
+        if (this instanceof Listener) {
+            Bukkit.getPluginManager().registerEvents((Listener) this, Main.getPlugin(Main.class));
+        }
         this.setEnabled(true);
         this.onEnable();
         for (Player player : Bukkit.getOnlinePlayers()) {
