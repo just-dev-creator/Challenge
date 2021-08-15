@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -8,12 +8,10 @@ package dev.just.challenge.listeners;
 
 import dev.just.challenge.Main;
 import dev.just.challenge.commands.TimerCommand;
-import dev.just.challenge.utils.BroadcastMessage;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.Timer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -61,7 +59,6 @@ public class DamageListener implements Listener {
             cause = "Ersticken";
         } else  if (damageCause.equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
             cause = "einen Angriff";
-            return;
         } else if (damageCause.equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION)) {
             cause = "eine Creeper-Explosion";
         } else if (damageCause.equals(EntityDamageEvent.DamageCause.FALL)) {
@@ -94,7 +91,7 @@ public class DamageListener implements Listener {
         } else if (damageCause.equals(EntityDamageEvent.DamageCause.THORNS)) {
             cause = "Dornen";
         } else if (damageCause.equals(EntityDamageEvent.DamageCause.VOID)) {
-            cause = "nichts";
+            cause = "das Nichts";
         } else if (damageCause.equals(EntityDamageEvent.DamageCause.WITHER)) {
             cause = "den Wither";
         }
