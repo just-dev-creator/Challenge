@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -75,7 +75,7 @@ public class InventoryPage implements Listener {
      * @param title The title of the inventory
      * @param before The page that comes before this page. Can be null.
      * @param after The page that comes after this page. Cam be null
-     * @param entries The challenges that will be displayed. May not be more than 9
+     * @param entries The challenges that will be displayed. May not be more than 18
      */
     public InventoryPage(int pageNumber, String title, InventoryPage before, InventoryPage after, List<AbstractChallenge> entries) {
         this.number = pageNumber;
@@ -138,8 +138,10 @@ public class InventoryPage implements Listener {
     public Inventory getInventory() throws Exception {
         if (this.entries.size() > this.slots) throw new Exception("Too many items!");
         Inventory inventory = Bukkit.createInventory(null, slots + 9, this.title);
+        int i = 0;
         for (AbstractChallenge challenge : this.entries) {
-            inventory.addItem(challenge.getMenuItem());
+            inventory.setItem(i, challenge.getMenuItem());
+            i++;
         }
         if (this.before == null) {
             inventory.setItem(this.slots, this.page_error);
@@ -167,24 +169,18 @@ public class InventoryPage implements Listener {
                 else entry.enable();
                 try {
                     player.openInventory(this.getInventory());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                } catch (Exception ignored) {}
             }
         }
         if (event.getCurrentItem().isSimilar(this.page_before)) {
             try {
                 player.openInventory(before.getInventory());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            } catch (Exception ignored) {}
         }
         if (event.getCurrentItem().isSimilar(this.page_after)) {
             try {
                 player.openInventory(after.getInventory());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            } catch (Exception ignored) {}
         }
     }
 }
