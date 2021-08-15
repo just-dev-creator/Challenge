@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -14,8 +14,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class TestChallenge extends AbstractChallenge implements Listener {
-    public TestChallenge() {
-        super("Test", Material.PISTON);
+    public TestChallenge(String name) {
+        super(name, Material.PISTON);
     }
 
     @Override
