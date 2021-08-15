@@ -101,6 +101,21 @@ public class Timer {
                 }
             }
         }.runTask(Main.getPlugin(Main.class));
+        sendEndMessage(cause);
+    }
+    public static void endChallenge(String cause) {
+        timer_active = false;
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (Player players : Bukkit.getOnlinePlayers()) {
+                    players.setGameMode(GameMode.SPECTATOR);
+                }
+            }
+        }.runTask(Main.getPlugin(Main.class));
+        sendEndMessage(cause);
+    }
+    private static void sendEndMessage(String cause) {
         String h;
         if (timer_h < 10) {
             h = "0" + timer_h.toString();
