@@ -78,11 +78,13 @@ public class ForceEffect extends AbstractForceChallenge {
 
     @Override
     public String getTitle(Object upcoming) {
+        if (upcoming == null) return null;
         return ChatColor.GRAY + "Nächster Effekt: " + ChatColor.GREEN + getObjectName(upcoming);
     }
 
     @Override
     public String getObjectName(Object upcoming) {
+        if (upcoming == null) return null;
         String effectNameBefore = ((PotionEffectType) upcoming).getName();
         String[] effectNameSplit = effectNameBefore.split("_");
         return ShortString.run(effectNameSplit, false, true);
@@ -90,11 +92,13 @@ public class ForceEffect extends AbstractForceChallenge {
 
     @Override
     public String getTaskMessage(String upcomingName) {
+        if (upcomingName == null) return null;
         return ChatColor.GRAY + "Erhalte den Effekt " + ChatColor.GREEN + upcomingName;
     }
 
     @Override
     public boolean isFinished(Object currentTask) {
+        if (currentTask == null) return false;
         PotionEffectType effectType = (PotionEffectType) currentTask;
         AtomicBoolean someoneHas = new AtomicBoolean(false);
         for (Player player : Bukkit.getOnlinePlayers()) {
