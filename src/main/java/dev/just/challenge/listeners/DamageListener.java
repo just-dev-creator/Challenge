@@ -60,7 +60,7 @@ public class DamageListener implements Listener {
         } else  if (damageCause.equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
             cause = "einen Angriff";
         } else if (damageCause.equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION)) {
-            cause = "eine Creeper-Explosion";
+            cause = "eine Explosion";
         } else if (damageCause.equals(EntityDamageEvent.DamageCause.FALL)) {
             cause = "Fallschaden";
         } else if (damageCause.equals(EntityDamageEvent.DamageCause.FALLING_BLOCK)) {
