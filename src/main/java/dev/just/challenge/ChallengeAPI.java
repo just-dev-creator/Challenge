@@ -8,7 +8,9 @@ package dev.just.challenge;
 
 import dev.just.challenge.challenge.AbstractChallenge;
 import dev.just.challenge.challenge.ChallengeConfig;
+import dev.just.challenge.challenge.challenges.BlocksExplode;
 import dev.just.challenge.challenge.challenges.FacingChallenge;
+import dev.just.challenge.challenge.challenges.forcechallenges.ForceEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,8 @@ public class ChallengeAPI {
     }
     private static void setup() {
         challenges.add(new FacingChallenge());
+        challenges.add(new ForceEffect());
+        challenges.add(new BlocksExplode());
     }
     private static void register() {
     }
