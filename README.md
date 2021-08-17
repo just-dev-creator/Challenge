@@ -17,7 +17,7 @@ Cause the plugin code is mostly unorganized and hard to understand, I'm currentl
 The new challenges can be activated using the `/newevents` command. Here is the current status of the process:
 - [X] Facing
 - [ ] ForceBiome
-- [ ] ForceEffect
+- [X] ForceEffect
 - [ ] ForceGleichungen
 - [ ] Math
 - [ ] NoInv
