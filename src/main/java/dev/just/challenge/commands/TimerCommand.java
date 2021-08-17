@@ -1,22 +1,19 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
 
 package dev.just.challenge.commands;
 
-import dev.just.challenge.Main;
 import dev.just.challenge.utils.Sound;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
+import dev.just.challenge.utils.Timer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +37,13 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
             Bukkit.broadcastMessage(prefix() + "Der Timer ist gestartet!");
             timer_active = true;
             Sound.broadcastSound(org.bukkit.Sound.BLOCK_ANVIL_PLACE);
+            Timer.sendTimerUpdate();
         }
         else if (args[0].equalsIgnoreCase("pause")) {
             sender.sendMessage(prefix() + "Du hast den Timer erfolgreich pausiert.");
             Sound.broadcastSound(org.bukkit.Sound.ITEM_TOTEM_USE);
             timer_active = false;
+            Timer.sendTimerUpdate();
         }
         else if (args[0].equalsIgnoreCase("reset")) {
             sender.sendMessage(prefix() + "Du hast den Timer erfolgreich zurückgesetzt!");
@@ -53,6 +52,7 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
             timer_h = 0;
             Sound.broadcastSound(org.bukkit.Sound.BLOCK_ANVIL_DESTROY);
             timer_active = false;
+            Timer.sendTimerUpdate();
         } else if (args.length == 2) {
             if (args[1].equalsIgnoreCase("h") && args.length == 2) {
                 timer_h = Integer.parseInt(args[0]);
@@ -66,6 +66,7 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
                 timer_min = Integer.parseInt(args[0]);
                 sender.sendMessage(prefix() + "Du hast den Timer auf " + args[0] + " Minuten gesetzt!");
             }
+            Timer.sendTimerUpdate();
         }
         else {
             return false;

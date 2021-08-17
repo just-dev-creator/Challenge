@@ -1,12 +1,14 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
 
 package dev.just.challenge.utils;
 
+import dev.just.challenge.ChallengeAPI;
 import dev.just.challenge.Main;
+import dev.just.challenge.challenge.AbstractForceChallenge;
 import dev.just.challenge.commands.TimerCommand;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -17,8 +19,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.ArrayList;
 
 import static dev.just.challenge.commands.TimerCommand.*;
 
@@ -197,5 +197,13 @@ public class Timer {
 
     public static boolean isRunning() {
         return timer_active;
+    }
+
+    public static void sendTimerUpdate() {
+        ChallengeAPI.challenges.forEach(abstractChallenge -> {
+            if (abstractChallenge instanceof AbstractForceChallenge) {
+                ((AbstractForceChallenge) abstractChallenge).onTimerUpdate();
+            }
+        });
     }
 }
