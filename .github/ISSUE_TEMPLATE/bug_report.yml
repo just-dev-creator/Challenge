@@ -1,0 +1,49 @@
+name: Bug Report
+description: File a bug report
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting a bug report, please make sure you have read this *entire* form, and that:
+        * Your bug is not caused by Minecraft or any other pluginds or mods you have installed.
+        * Your issue has not been reported before, [make sure to use the search function!](https://github.com/just-dev-creator/Challenge/issues)
+
+        **Do not forget to give your issue a descriptive title.** "Bug in the inventory" makes it hard to distinguish issues at a glance.
+  - type: dropdown
+    attributes:
+      label: Server version
+      description: If you know this bug occurs on multiple versions, select all you have tested.
+      multiple: true
+      options:
+        - 1.17
+        - 1.16
+        - 1.15
+        - 1.14
+        - 1.13
+  - type: textarea
+    attributes:
+      label: Description of bug
+      description: What did you expect to happen, what happened, and why is it incorrect?
+      placeholder: The cat button should show a cat, but it showed a dog instead!
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: A bulleted list, or an exported instance if relevant.
+      placeholder: "* Press the cat button"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Suspected cause
+      description: If you know what could be causing this bug, describe it here.
+    validations:
+      required: false
+  - type: checkboxes
+    attributes:
+      label: This issue is unique
+      options:
+        - label: I have searched the issue tracker and did not find an issue describing my bug.
+          required: true
