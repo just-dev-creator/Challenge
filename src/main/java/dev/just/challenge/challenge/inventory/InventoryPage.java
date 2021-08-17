@@ -162,7 +162,6 @@ public class InventoryPage implements Listener {
         HumanEntity player = event.getWhoClicked();
         event.setCancelled(true);
         for (AbstractChallenge entry : this.entries) {
-            System.out.println(entry.name);
             if (event.getCurrentItem().isSimilar(entry.getMenuItem())) {
                 System.out.println(entry.name);
                 if (entry.isEnabled) entry.disable();
