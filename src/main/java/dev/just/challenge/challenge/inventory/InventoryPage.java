@@ -8,6 +8,7 @@ package dev.just.challenge.challenge.inventory;
 
 import dev.just.challenge.Main;
 import dev.just.challenge.challenge.AbstractChallenge;
+import dev.just.challenge.challenge.AbstractOptionChallenge;
 import dev.just.challenge.utils.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,6 +23,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class InventoryPage implements Listener {
     private final int number;
@@ -161,14 +163,28 @@ public class InventoryPage implements Listener {
         if (event.getCurrentItem() == null) return;
         HumanEntity player = event.getWhoClicked();
         event.setCancelled(true);
-        for (AbstractChallenge entry : this.entries) {
-            if (event.getCurrentItem().isSimilar(entry.getMenuItem())) {
-                System.out.println(entry.name);
-                if (entry.isEnabled) entry.disable();
-                else entry.enable();
-                try {
-                    player.openInventory(this.getInventory());
-                } catch (Exception ignored) {}
+        if (Objects.requireNonNull(Objects.requireNonNull(event.getCurrentItem().getItemMeta()).
+                getLore()).get(0).contains(" | ")) {
+            for (AbstractChallenge entry : this.entries) {
+                if (!(entry instanceof AbstractOptionChallenge)) return;
+                AbstractOptionChallenge challenge = (AbstractOptionChallenge) entry;
+                if (event.getCurrentItem().isSimilar(challenge.getMenuItem())) {
+                    if (event.getClick().isLeftClick()) {
+                        challenge.changeState(AbstractOptionChallenge.StateChangeType.DECREASE);
+                    } else if (event.getClick().isRightClick()) {
+                        challenge.changeState(AbstractOptionChallenge.StateChangeType.INCREASE);
+                    }
+                }
+            }
+        } else {
+            for (AbstractChallenge entry : this.entries) {
+                if (event.getCurrentItem().isSimilar(entry.getMenuItem())) {
+                    if (entry.isEnabled) entry.disable();
+                    else entry.enable();
+                    try {
+                        player.openInventory(this.getInventory());
+                    } catch (Exception ignored) {}
+                }
             }
         }
         if (event.getCurrentItem().isSimilar(this.page_before)) {
