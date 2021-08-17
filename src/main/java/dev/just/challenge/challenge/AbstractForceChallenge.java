@@ -35,8 +35,9 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
     private Object next;
     private int time;
     private int startTime;
-    private ForceState state;
-    private Random random = new Random();
+    private ForceState state = ForceState.LOADING;
+    private final Random random = new Random();
+    private boolean isTaskStarted = false;
 
 
     /**
@@ -93,7 +94,7 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
         if (this.bossBar == null) {
             this.bossBar = Bukkit.createBossBar(ChatColor.GOLD + "Loading...", BarColor.WHITE, BarStyle.SOLID);
         }
-        if (!isEnabled) {
+        if (!this.isActive()) {
             this.bossBar.setTitle(ChatColor.GOLD + "Der Timer ist " + "pausiert");
             this.bossBar.setColor(BarColor.RED);
             this.bossBar.setProgress(1.0D);
@@ -111,13 +112,14 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
             } else {
                 this.bossBar.setColor(BarColor.RED);
             }
-            for (Player all : Bukkit.getOnlinePlayers()) {
-                this.bossBar.addPlayer(all);
-            }
+        }
+        for (Player all : Bukkit.getOnlinePlayers()) {
+            this.bossBar.addPlayer(all);
         }
     }
 
     private void removeBossbar() {
+        if (this.bossBar == null) return;
         this.bossBar.removeAll();
         this.bossBar = null;
     }
@@ -152,13 +154,19 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
     }
 
     private void run() {
+        if (this.isTaskStarted) return;
+        if (!AbstractForceChallenge.this.isEnabled) return;
+        this.isTaskStarted = true;
         new BukkitRunnable() {
             @Override
             public void run() {
                 if (!AbstractForceChallenge.this.isEnabled) {
                     removeBossbar();
+                    AbstractForceChallenge.this.isTaskStarted = false;
                     cancel();
                 }
+                updateBossBar();
+                if (!AbstractForceChallenge.this.isActive()) return;
                 if (AbstractForceChallenge.this.state == ForceState.LOADING) {
                     AbstractForceChallenge.this.time = AbstractForceChallenge.this.random.nextInt(
                             AbstractForceChallenge.this.firstTaskMaxTime() -
@@ -166,6 +174,7 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
                     ) + AbstractForceChallenge.this.firstTaskMinTime();
                     Bukkit.broadcastMessage(Main.getCustomPrefix(AbstractForceChallenge.this.name) + "Erste Aufgabe " +
                             "in frühestens " + ShortInteger.run(AbstractForceChallenge.this.firstTaskMinTime()));
+                    AbstractForceChallenge.this.generateUpcoming();
                 }
                 if (AbstractForceChallenge.this.upcoming != null) {
                     if (AbstractForceChallenge.this.isFinished(AbstractForceChallenge.this.upcoming)) {
@@ -182,6 +191,7 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
                 if (AbstractForceChallenge.this.time == 0) {
                     if (AbstractForceChallenge.this.upcoming != null) {
                         Timer.endChallenge("Die Aufgabe wurde nicht geschafft.");
+                        AbstractForceChallenge.this.state = ForceState.LOADING;
                     } else {
                         AbstractForceChallenge.this.setNewObject();
                     }
@@ -205,13 +215,13 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
         this.startTime = this.time;
         this.upcoming = this.next;
         Bukkit.broadcastMessage(Main.getCustomPrefix(this.name) + ChatColor.DARK_GRAY + "NEUE ANWEISUNG: " +
-                getTaskMessage(this.getObjectName(this.upcoming)));
+                getTaskMessage(this.getObjectName(this.next)));
     }
 
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        if (!this.isEnabled) return;
+        if (!this.isActive()) return;
         if (event.getMessage().equalsIgnoreCase("!force set")) {
             this.time = 2;
             player.sendMessage(Main.getCustomPrefix(this.name) + "Die Zeit wurde auf 2 Sekunden " +
@@ -241,5 +251,8 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
                     this.getObjectName(this.next));
             event.setCancelled(true);
         }
+    }
+    public void onTimerUpdate() {
+        run();
     }
 }
