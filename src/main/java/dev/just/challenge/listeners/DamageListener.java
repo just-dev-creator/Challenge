@@ -30,73 +30,90 @@ public class DamageListener implements Listener {
         double damage = (event.getFinalDamage()/2);
         EntityDamageEvent.DamageCause damageCause = event.getCause();
         String cause = null;
-        if (damageCause.equals(EntityDamageEvent.DamageCause.BLOCK_EXPLOSION)) {
-            cause = "eine Explosion";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.CONTACT)) {
-            cause = "einen Kontakt";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.CRAMMING)) {
-            cause = "Entity-Cramming";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.CUSTOM) &&  Settings.settings.get(Settings.ItemType.CALLDMG) == Settings.ItemState.ENABLED) {
-//            Bukkit.broadcastMessage(Main.getPrefix() + "Der Spieler " + ChatColor.GOLD + player.getName() + ChatColor.DARK_GRAY + " hat durch ein undefinierbares Ereignis " + ChatColor.GOLD + damage + ChatColor.DARK_GRAY + " Herzen Schaden genommen!");
-            if (Settings.settings.get(Settings.ItemType.USERSIDEYOU).equals(Settings.ItemState.ENABLED)) {
-                for (Player all : Bukkit.getOnlinePlayers()) {
-                    if (all.equals(player)) {
-                        all.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du " + ChatColor.DARK_GRAY + "hast durch ein undefinierbares Ereignis " + ChatColor.GOLD + damage + ChatColor.DARK_GRAY + " Herzen Schaden genommen!");
+        switch (damageCause) {
+            case BLOCK_EXPLOSION: {
+                cause = "eine Explosion";
+            } case CONTACT: {
+                cause = "einen Kontakt";
+            } case CRAMMING: {
+                cause = "Entity-Cramming";
+            } case CUSTOM: {
+                if (Settings.settings.get(Settings.ItemType.CALLDMG) == Settings.ItemState.ENABLED) {
+                    if (Settings.settings.get(Settings.ItemType.USERSIDEYOU).equals(Settings.ItemState.ENABLED)) {
+                        for (Player all : Bukkit.getOnlinePlayers()) {
+                            if (all.equals(player)) {
+                                all.sendMessage(Main.getPrefix() + ChatColor.GOLD + "Du " + ChatColor.DARK_GRAY +
+                                        "hast durch ein undefinierbares Ereignis " + ChatColor.GOLD + damage +
+                                        ChatColor.DARK_GRAY + " Herzen Schaden genommen!");
+                            } else {
+                                all.sendMessage(Main.getPrefix() + "Der Spieler " + ChatColor.GOLD +
+                                        player.getName() + ChatColor.DARK_GRAY +
+                                        " hat durch ein undefinierbares Ereignis " + ChatColor.GOLD + damage +
+                                        ChatColor.DARK_GRAY + " Herzen Schaden genommen!");
+                            }
+                            Bukkit.getLogger().info(Main.getPrefix() + "Der Spieler " + ChatColor.GOLD +
+                                    player.getName() + ChatColor.DARK_GRAY +
+                                    " hat durch ein undefinierbares Ereignis " + ChatColor.GOLD + damage +
+                                    ChatColor.DARK_GRAY + " Herzen Schaden genommen!");
+                        }
                     } else {
-                        all.sendMessage(Main.getPrefix() + "Der Spieler " + ChatColor.GOLD + player.getName() + ChatColor.DARK_GRAY + " hat durch ein undefinierbares Ereignis " + ChatColor.GOLD + damage + ChatColor.DARK_GRAY + " Herzen Schaden genommen!");
+                        Bukkit.broadcastMessage(Main.getPrefix() + "Der Spieler " + ChatColor.GOLD + player.getName() +
+                                ChatColor.DARK_GRAY + " hat durch ein undefinierbares Ereignis " + ChatColor.GOLD +
+                                damage + ChatColor.DARK_GRAY + " Herzen Schaden genommen!");
                     }
-                    Bukkit.getLogger().info(Main.getPrefix() + "Der Spieler " + ChatColor.GOLD + player.getName() + ChatColor.DARK_GRAY + " hat durch ein undefinierbares Ereignis " + ChatColor.GOLD + damage + ChatColor.DARK_GRAY + " Herzen Schaden genommen!");
                 }
-            } else {
-                Bukkit.broadcastMessage(Main.getPrefix() + "Der Spieler " + ChatColor.GOLD + player.getName() + ChatColor.DARK_GRAY + " hat durch ein undefinierbares Ereignis " + ChatColor.GOLD + damage + ChatColor.DARK_GRAY + " Herzen Schaden genommen!");
+            } case DRAGON_BREATH: {
+                cause = "den Drachen-Atem";
+            } case DROWNING: {
+                cause = "Ertrinken";
+            } case DRYOUT: {
+                cause = "Ersticken";
+            } case ENTITY_ATTACK: {
+                cause = "einen Angriff";
+            } case ENTITY_EXPLOSION: {
+                cause = "eine Explosion";
+            } case FALL: {
+                cause = "Fallschaden";
+            } case FALLING_BLOCK: {
+                cause = "einen fallenden Block";
+            } case FIRE: {
+                cause = "Feuer";
+            } case FIRE_TICK: {
+                cause = "Verbrennung";
+            } case HOT_FLOOR: {
+                cause = "Magma-Blöcke";
+            } case LAVA: {
+                cause = "Lava";
+            } case LIGHTNING: {
+                cause = "einen Blitz";
+            } case MAGIC: {
+                cause = "Magie";
+            } case MELTING: {
+                cause = "einen Schneemann";
+            } case POISON: {
+                cause = "Vergiftung";
+            } case PROJECTILE: {
+                cause = "ein Projektil";
+            } case STARVATION: {
+                cause = "Hunger";
+            } case SUFFOCATION: {
+                cause = "Erstickung";
+            } case SUICIDE: {
+                if (Settings.settings.get(Settings.ItemType.CALLDMG).equals(Settings.ItemState.ENABLED)) {
+                    Bukkit.broadcastMessage(Main.getPrefix() + player.getName() + " hat den leichtesten Ausweg gewählt");
+                    return;
+                }
+            } case THORNS: {
+                cause = "Dornen";
+            } case VOID: {
+                cause = "das Nichts";
+            } case WITHER: {
+                cause = "den Wither";
+            } default: {
+                cause = damageCause.name();
             }
-            return;
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.DRAGON_BREATH)) {
-            cause = "den Drachen-Atem";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.DROWNING)) {
-            cause = "Ertrinken";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.DRYOUT)) {
-            cause = "Ersticken";
-        } else  if (damageCause.equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
-            cause = "einen Angriff";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION)) {
-            cause = "eine Explosion";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.FALL)) {
-            cause = "Fallschaden";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.FALLING_BLOCK)) {
-            cause = "einen fallenden Block";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.FIRE) || damageCause.equals(EntityDamageEvent.DamageCause.FIRE_TICK)) {
-            cause = "Feuer";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.HOT_FLOOR)) {
-            cause = "Magma-Blöcke";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.LAVA)) {
-            cause = "Lava";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.LIGHTNING)) {
-            cause = "einen Blitz";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.MAGIC)) {
-            cause = "Magie";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.MELTING)) {
-            cause = "einen Schneemann";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.POISON)) {
-            cause = "Vergiftung";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.PROJECTILE)) {
-            cause = "ein Projektil";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.STARVATION)) {
-            cause = "Hunger";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.SUFFOCATION)) {
-            cause = "Erstickung";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.SUICIDE) &&  Settings.settings.get(Settings.ItemType.CALLDMG) == Settings.ItemState.ENABLED) {
-            Bukkit.broadcastMessage(Main.getPrefix() + player.getName() + " hat den leichtesten Ausweg gewählt");
-            return;
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.THORNS)) {
-            cause = "Dornen";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.VOID)) {
-            cause = "das Nichts";
-        } else if (damageCause.equals(EntityDamageEvent.DamageCause.WITHER)) {
-            cause = "den Wither";
         }
         if (Settings.settings.get(Settings.ItemType.CALLDMG) == Settings.ItemState.ENABLED) {
-//            Bukkit.broadcastMessage(Main.getPrefix() + "Der Spieler " + ChatColor.GOLD + player.getName() + ChatColor.DARK_GRAY + " hat durch " + cause + " " + ChatColor.GOLD + damage + ChatColor.DARK_GRAY + " Herzen Schaden genommen!");
             if (Settings.settings.get(Settings.ItemType.USERSIDEYOU).equals(Settings.ItemState.ENABLED)) {
                 for (Player all : Bukkit.getOnlinePlayers()) {
                     if (all.equals(player)) {
