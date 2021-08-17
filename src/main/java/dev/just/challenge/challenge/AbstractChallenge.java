@@ -104,17 +104,17 @@ public abstract class AbstractChallenge {
         }
     }
 
-    private void setConfig(String path, Object value) {
+    protected void setConfig(String path, Object value) {
         ChallengeConfig.set(this.configName + "." + path, value);
     }
-    private boolean containsConfig(String path) {
+    protected boolean containsConfig(String path) {
         return ChallengeConfig.contains(this.configName + "." + path);
     }
-    private Object getConfig(String path) {
+    protected Object getConfig(String path) {
         return ChallengeConfig.get(this.configName + "." + path);
     }
 
-    private void setEnabled(boolean enabled) {
+    protected void setEnabled(boolean enabled) {
         this.isEnabled = enabled;
         this.setConfig("enabled", enabled);
     }
