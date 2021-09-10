@@ -7,9 +7,13 @@
 package dev.just.challenge.challenge.inventory;
 
 import dev.just.challenge.challenge.AbstractChallenge;
+import dev.just.challenge.utils.ItemBuilder;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +56,25 @@ public class ChallengeInventory implements Listener {
             }
             return pages.get(0).getInventory();
         } catch (Exception e) {
-            Bukkit.getLogger().warning(e.toString());
-            return null;
+            Inventory errorInventory = Bukkit.createInventory(null, 9, ChatColor.RED + "Es ist ein " +
+                    "Fehler aufgetreten!");
+            ItemStack errorInfo = new ItemBuilder(Material.RED_DYE)
+                    .setName(ChatColor.RED + "Es ist ein Fehler beim Laden des Inventars aufgetreten!")
+                    .addLoreLine(ChatColor.GRAY + e.getMessage())
+                    .toItemStack();
+            ItemStack placeholder = new ItemBuilder(Material.LIGHT_GRAY_STAINED_GLASS_PANE)
+                    .setName("")
+                    .toItemStack();
+            errorInventory.setItem(0, placeholder);
+            errorInventory.setItem(1, placeholder);
+            errorInventory.setItem(2, placeholder);
+            errorInventory.setItem(3, placeholder);
+            errorInventory.setItem(4, errorInfo);
+            errorInventory.setItem(5, placeholder);
+            errorInventory.setItem(6, placeholder);
+            errorInventory.setItem(7, placeholder);
+            errorInventory.setItem(8, placeholder);
+            return errorInventory;
         }
     }
 }
