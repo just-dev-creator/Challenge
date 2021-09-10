@@ -1,11 +1,12 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
 
 package dev.just.challenge.inventorys;
 
+import dev.just.challenge.challenge.inventory.ChallengeInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -39,8 +40,7 @@ public class HubInventory implements Listener {
         if (event.getView().getTitle().equals(ChatColor.GOLD + "Einstellungen")) {
             event.setCancelled(true);
             if (event.getCurrentItem().getType() == Material.NETHER_STAR) {
-                ChallengeInventory.createInventory();
-                event.getWhoClicked().openInventory(ChallengeInventory.inventory);
+                event.getWhoClicked().openInventory(ChallengeInventory.getInventory());
             }
             if (event.getCurrentItem().getType() == Material.MAP) {
                 UtilsInventory.createInventory((Player) event.getWhoClicked());
