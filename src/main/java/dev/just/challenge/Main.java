@@ -121,7 +121,7 @@ public final class Main extends JavaPlugin {
         getCommand("dimension").setExecutor(new DimensionCommand());
         getCommand("beta").setExecutor(new BetaCommand());
         getCommand("position").setExecutor(new PositionCommand());
-        getCommand("newevents").setExecutor(new InventoryCommand());
+        getCommand("oldevents").setExecutor(new InventoryCommand());
 
         getCommand("events").setTabCompleter(new EventsCommand());
         getCommand("heal").setTabCompleter(new HealCommand());

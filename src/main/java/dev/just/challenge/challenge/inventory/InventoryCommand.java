@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -7,6 +7,7 @@
 package dev.just.challenge.challenge.inventory;
 
 import dev.just.challenge.Main;
+import dev.just.challenge.inventorys.ChallengeInventory;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,7 +26,8 @@ public class InventoryCommand implements CommandExecutor {
             sender.sendMessage(Main.getNoPermission());
             return false;
         }
-        ((Player) sender).openInventory(ChallengeInventory.getInventory());
+        ChallengeInventory.createInventory();
+        ((Player) sender).openInventory(ChallengeInventory.inventory);
         return false;
     }
 }
