@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -12,20 +12,23 @@ import dev.just.challenge.challenge.inventory.InventoryCommand;
 import dev.just.challenge.challenges.*;
 import dev.just.challenge.commands.*;
 import dev.just.challenge.giveop.ChatListener;
-import dev.just.challenge.inventorys.*;
+import dev.just.challenge.inventorys.ChallengeInventory;
+import dev.just.challenge.inventorys.HubInventory;
+import dev.just.challenge.inventorys.ParkourInventory;
+import dev.just.challenge.inventorys.UtilsInventory;
 import dev.just.challenge.listeners.*;
 import dev.just.challenge.utilities.MathChallenge;
 import dev.just.challenge.utilities.Parcour;
 import dev.just.challenge.utils.*;
-import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.StructureType;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public final class Main extends JavaPlugin {
     public static ArrayList<Player> hide = new ArrayList<>();
@@ -46,7 +49,7 @@ public final class Main extends JavaPlugin {
                 System.out.println(ChatColor.YELLOW + "Folgende Fehlermeldung ignorieren - Plugin ist komplett deaktiviert! ");
             }
         } finally {
-            getPlugin = this;
+//            getPlugin = this;
             TimerCommand.timer_active = false;
             // Plugin startup logic
             Settings.settings.clear();
@@ -98,8 +101,6 @@ public final class Main extends JavaPlugin {
     public static String getNoPermission() {
         return getErrorPrefix() + "Du hast nicht die nötigen Berechtigungen. ";
     }
-
-    public static Main getPlugin;
 
     @Override
     public void onDisable() {

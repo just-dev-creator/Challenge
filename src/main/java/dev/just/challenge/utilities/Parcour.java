@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -103,7 +103,7 @@ public class Parcour implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         if (Settings.settings.get(Settings.ItemType.PARCOUR).equals(Settings.ItemState.ENABLED)) {
             event.setDeathMessage("");
-            Bukkit.getScheduler().runTaskLater(Main.getPlugin, new Runnable() {
+            Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), new Runnable() {
                 @Override
                 public void run() {
                     event.getEntity().spigot().respawn();

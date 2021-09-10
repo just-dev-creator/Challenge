@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -8,35 +8,24 @@ package dev.just.challenge.challenges;
 
 import dev.just.challenge.Main;
 import dev.just.challenge.commands.TimerCommand;
-import dev.just.challenge.utils.*;
+import dev.just.challenge.utils.Settings;
+import dev.just.challenge.utils.ShortInteger;
+import dev.just.challenge.utils.ShortString;
+import dev.just.challenge.utils.Timer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Material;
-import org.bukkit.block.Biome;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.potion.PotionType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Random;
 
 // Nur zur Info: Beginn am 4.9.2020 / 19:19
@@ -78,7 +67,7 @@ public class ForceEffectChallenge implements Listener {
     }
 
     public void run() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin, new Runnable() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(Main.class), new Runnable() {
             @Override
             public void run() {
                 if (Settings.settings.get(Settings.ItemType.FORCEEFFECT).equals(Settings.ItemState.ENABLED)) {

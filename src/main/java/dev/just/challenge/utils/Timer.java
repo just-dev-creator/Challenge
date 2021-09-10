@@ -25,7 +25,7 @@ import static dev.just.challenge.commands.TimerCommand.*;
 
 public class Timer {
     public static void timer() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin, new Runnable() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(Main.class), new Runnable() {
             @Override
             public void run() {
                 if (timer_active) {

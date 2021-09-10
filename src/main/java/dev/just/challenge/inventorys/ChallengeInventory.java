@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -7,24 +7,19 @@
 package dev.just.challenge.inventorys;
 
 import dev.just.challenge.Main;
-import dev.just.challenge.utils.ItemBuilder;
 import dev.just.challenge.utils.Settings;
 import dev.just.challenge.utils.Sound;
 import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class ChallengeInventory implements Listener {
     public static Inventory inventory = Bukkit.createInventory(null, 45, ChatColor.GREEN + "Challenges");
@@ -369,7 +364,7 @@ public class ChallengeInventory implements Listener {
             if (safe.contains(event.getPlayer())) {
                 return;
             }
-            Bukkit.getScheduler().runTaskLater(Main.getPlugin, new Runnable() {
+            Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), new Runnable() {
                 @Override
                 public void run() {
                     event.getPlayer().openInventory(HubInventory.inventory);

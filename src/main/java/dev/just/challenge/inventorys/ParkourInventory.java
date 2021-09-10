@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -7,7 +7,6 @@
 package dev.just.challenge.inventorys;
 
 import dev.just.challenge.Main;
-import dev.just.challenge.utils.Config;
 import dev.just.challenge.utils.Settings;
 import dev.just.challenge.utils.Sound;
 import org.bukkit.Bukkit;
@@ -246,7 +245,7 @@ public class ParkourInventory implements Listener {
     public void onClose(InventoryCloseEvent event) {
         if (event.getView().getTitle().equals(ChatColor.GREEN + "Parkour-Settings")) {
             UtilsInventory.createInventory((Player) event.getPlayer());
-            Bukkit.getScheduler().runTaskLater(Main.getPlugin, new Runnable() {
+            Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), new Runnable() {
                 @Override
                 public void run() {
                     event.getPlayer().openInventory(UtilsInventory.inventory);

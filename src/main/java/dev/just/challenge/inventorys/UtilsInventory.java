@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2021. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -7,7 +7,6 @@
 package dev.just.challenge.inventorys;
 
 import dev.just.challenge.Main;
-import dev.just.challenge.utils.Config;
 import dev.just.challenge.utils.Settings;
 import dev.just.challenge.utils.Sound;
 import dev.just.challenge.utils.Utils;
@@ -18,7 +17,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -132,7 +130,7 @@ public class UtilsInventory implements Listener {
                     return;
                 }
                 safe.add(player);
-                Bukkit.getScheduler().runTaskLater(Main.getPlugin, new Runnable() {
+                Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), new Runnable() {
                     @Override
                     public void run() {
                         safe.remove(player);
@@ -152,7 +150,7 @@ public class UtilsInventory implements Listener {
                     return;
                 }
                 safe.add(player);
-                Bukkit.getScheduler().runTaskLater(Main.getPlugin, new Runnable() {
+                Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), new Runnable() {
                     @Override
                     public void run() {
                         safe.remove(player);
@@ -197,7 +195,7 @@ public class UtilsInventory implements Listener {
                 return;
             }
             HubInventory.createInventory();
-            Bukkit.getScheduler().runTaskLater(Main.getPlugin, new Runnable() {
+            Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), new Runnable() {
                 @Override
                 public void run() {
                     event.getPlayer().openInventory(HubInventory.inventory);
