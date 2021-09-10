@@ -37,10 +37,8 @@ jobs:
           java-version: "16"
       - name: Download PaperMC
         run: wget "https://papermc.io/api/v1/paper/1.17.1/latest/download" -O paperclip.jar
-      - name: Create plugins directory
-        run: mkdir plugins
-      - name: Create JUtils direcotry
-        run: mkdir plugins/JUtils
+      - name: Create JUtils configuration direcotry
+        run: mkdir -p plugins/JUtils
       - name: Put license key
         run: "echo LICENSE-KEY: ${{ secrets.PLUGIN_LICENSE_KEY }} > plugins/JUtils/license.yml"
       - name: Agree to EULA
