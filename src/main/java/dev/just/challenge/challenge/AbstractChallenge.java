@@ -30,11 +30,11 @@ public abstract class AbstractChallenge {
     public AbstractChallenge(String name) {
         this.name = name;
         this.configName = name.toLowerCase().replace(" ", "_");
+        if (this instanceof Listener) {
+            Bukkit.getPluginManager().registerEvents((Listener) this, Main.getPlugin(Main.class));
+        }
         if (this.containsConfig("enabled") && (boolean) this.getConfig("enabled")) {
             this.isEnabled = true;
-            if (this instanceof Listener) {
-                Bukkit.getPluginManager().registerEvents((Listener) this, Main.getPlugin(Main.class));
-            }
         }
         this.icon = new ItemStack(Material.STRUCTURE_VOID);
     }
@@ -43,20 +43,17 @@ public abstract class AbstractChallenge {
         this.configName = name.toLowerCase().replace(" ", "_");
         if (this.containsConfig("enabled") && (boolean) this.getConfig("enabled")) {
             this.isEnabled = true;
-            if (this instanceof Listener) {
-                Bukkit.getPluginManager().registerEvents((Listener) this, Main.getPlugin(Main.class));
-            }
         }
         this.icon = icon;
     }
     public AbstractChallenge(String name, Material icon) {
         this.name = name;
         this.configName = name.toLowerCase().replace(" ", "_");
+        if (this instanceof Listener) {
+            Bukkit.getPluginManager().registerEvents((Listener) this, Main.getPlugin(Main.class));
+        }
         if (this.containsConfig("enabled") && (boolean) this.getConfig("enabled")) {
             this.isEnabled = true;
-            if (this instanceof Listener) {
-                Bukkit.getPluginManager().registerEvents((Listener) this, Main.getPlugin(Main.class));
-            }
         }
         this.icon = new ItemStack(icon, 1);
     }
