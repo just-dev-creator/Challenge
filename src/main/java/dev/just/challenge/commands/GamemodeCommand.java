@@ -42,11 +42,7 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
             } else if(args[0].equalsIgnoreCase("3") || args[0].equalsIgnoreCase("spec") || args[0].equalsIgnoreCase("spectator")) {
                 mode = GameMode.SPECTATOR;
                 name = "Spectator";
-            } else if(args[0].equalsIgnoreCase("23")) {
-                sender.sendMessage(Main.getErrorPrefix() + "Du bist ein Bot! :)");
-                sender.sendMessage(Main.getErrorPrefix() + "#GM23 in den Chat Clap");
-                return true;
-            } else {
+            }  else {
                 sender.sendMessage(Main.getErrorPrefix() + "Verwendung: /gamemode (0, 1, 2, 3, survival, creative, adventure, spectator) [User]");
                 return true;
             }
