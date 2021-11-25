@@ -49,9 +49,8 @@ public final class Main extends JavaPlugin {
                 System.out.println(ChatColor.YELLOW + "Folgende Fehlermeldung ignorieren - Plugin ist komplett deaktiviert! ");
             }
         } finally {
-//            getPlugin = this;
-            TimerCommand.timer_active = false;
             // Plugin startup logic
+            TimerCommand.timer_active = false;
             Settings.settings.clear();
             registerEvents();
             registerCommands();
@@ -75,7 +74,9 @@ public final class Main extends JavaPlugin {
 
     private void findVillage() {
         if (!Settings.settings.get(Settings.ItemType.DORFSPAWN).equals(Settings.ItemState.ENABLED)) return;
-        dorfSpawn = Bukkit.getWorld("world").locateNearestStructure(Bukkit.getWorld("world").getSpawnLocation(), StructureType.VILLAGE, 10000, true);
+        dorfSpawn = Bukkit.getWorld("world")
+                .locateNearestStructure(Bukkit.getWorld("world").getSpawnLocation(),
+                        StructureType.VILLAGE, 10000, true);
         for (int i = 50; i < 256; i++) {
             if (Bukkit.getWorld("world").getBlockAt(dorfSpawn.getBlockX(), i + 1, dorfSpawn.getBlockY()).getType().isAir()) {
                 if (Bukkit.getWorld("world").getBlockAt(dorfSpawn.getBlockX(), i + 2, dorfSpawn.getBlockY()).getType().isAir()) {
