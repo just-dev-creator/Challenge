@@ -36,7 +36,9 @@ jobs:
           distribution: "adopt"
           java-version: "16"
       - name: Download PaperMC
-        run: wget "https://papermc.io/api/v1/paper/1.17.1/latest/download" -O paperclip.jar
+        uses: just-dev-creator/install-paper@v1.0.1
+        with:
+          path: ./paperclip.jar
       - name: Create JUtils configuration direcotry
         run: mkdir -p plugins/JUtils
       - name: Put license key
