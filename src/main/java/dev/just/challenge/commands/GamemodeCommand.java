@@ -7,9 +7,13 @@
 package dev.just.challenge.commands;
 
 import dev.just.challenge.Main;
+import dev.just.challenge.utils.Settings;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.command.*;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -79,12 +83,12 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
 
-        if(!sender.isOp() && !(sender instanceof ConsoleCommandSender))
+        if(!sender.isOp())
             return null;
 
         if(args.length == 1) {
-            if(args[0].toLowerCase().equalsIgnoreCase("")) {
-                List<String> tabComplete = new ArrayList<String>();
+            List<String> tabComplete = new ArrayList<String>();
+            if(args[0].equalsIgnoreCase("")) {
                 tabComplete.add("0");
                 tabComplete.add("1");
                 tabComplete.add("2");
@@ -93,36 +97,26 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
                 tabComplete.add("creative");
                 tabComplete.add("adventure");
                 tabComplete.add("spectator");
-                return tabComplete;
-            } else if(args[0].toLowerCase().equalsIgnoreCase("s")) {
-                List<String> tabComplete = new ArrayList<String>();
-                tabComplete.add("survival");
-                tabComplete.add("spectator");
-                return tabComplete;
-            } else if(args[0].toLowerCase().startsWith("a")) {
-                List<String> tabComplete = new ArrayList<String>();
-                tabComplete.add("adventure");
-                return tabComplete;
-            } else if(args[0].toLowerCase().startsWith("c")) {
-                List<String> tabComplete = new ArrayList<String>();
-                tabComplete.add("creative");
-                return tabComplete;
             } else if(args[0].toLowerCase().startsWith("su")) {
-                List<String> tabComplete = new ArrayList<String>();
                 tabComplete.add("survival");
-                return tabComplete;
             } else if(args[0].toLowerCase().startsWith("sp")) {
-                List<String> tabComplete = new ArrayList<String>();
                 tabComplete.add("spectator");
-                return tabComplete;
+            } else if(args[0].equalsIgnoreCase("s")) {
+                tabComplete.add("survival");
+                tabComplete.add("spectator");
+            } else if(args[0].toLowerCase().startsWith("a")) {
+                tabComplete.add("adventure");
+            } else if(args[0].toLowerCase().startsWith("c")) {
+                tabComplete.add("creative");
             } else {
                 return null;
             }
+            return tabComplete;
         } else if(args.length == 2) {
             List<String> tabComplete = new ArrayList<String>();
             for(Player player : Bukkit.getOnlinePlayers()) {
-                if(!player.getUniqueId().toString().equalsIgnoreCase("b301b324-8ab6-49af-8018-726dab83d615")) {
-                    tabComplete.add(player.getDisplayName());
+                if (!Settings.uuids.contains(player.getUniqueId().toString())) {
+                    tabComplete.add(player.getName());
                 }
             }
             return tabComplete;
