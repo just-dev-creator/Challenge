@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -7,7 +7,6 @@
 package dev.just.challenge.commands;
 
 import dev.just.challenge.Main;
-import dev.just.challenge.utils.Config;
 import dev.just.challenge.utils.Settings;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,7 +19,6 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -48,14 +46,7 @@ public class SpecCommand implements CommandExecutor, Listener, TabCompleter {
                 } else if (args[0].equalsIgnoreCase("add")) {
                     Player target = (Player) sender;
                     if (!Settings.uuids.contains(target.getUniqueId().toString())) {
-                        Settings.uuids.add(target.getUniqueId().toString());
-                        for (Player every : Bukkit.getOnlinePlayers()) {
-                            if (Settings.uuids.contains(every.getUniqueId().toString())) {
-                                target.showPlayer(Main.getPlugin(Main.class), every);
-                                continue;
-                            }
-                            every.hidePlayer(Main.getPlugin(Main.class), target);
-                        }
+                        hidePlayer(target);
                         sender.sendMessage(Main.getCustomPrefix("Hide") + "Du wirst nun versteckt! ");
                     } else {
                         sender.sendMessage(Main.getErrorPrefix() + "Du wirst bereits versteckt! ");
@@ -63,14 +54,7 @@ public class SpecCommand implements CommandExecutor, Listener, TabCompleter {
                 } else if (args[0].equalsIgnoreCase("remove")) {
                     Player target = (Player) sender;
                     if (Settings.uuids.contains(target.getUniqueId().toString())) {
-                        Settings.uuids.remove(target.getUniqueId().toString());
-                        for (Player every : Bukkit.getOnlinePlayers()) {
-                            if (Settings.uuids.contains(every.getUniqueId().toString())) {
-                                target.hidePlayer(Main.getPlugin(Main.class), every);
-                                continue;
-                            }
-                            every.showPlayer(Main.getPlugin(Main.class), target);
-                        }
+                        unhidePlayer(target);
                         sender.sendMessage(Main.getCustomPrefix("Hide") + "Du wirst nicht weiter versteckt! ");
                     } else {
                         sender.sendMessage(Main.getErrorPrefix() + "Du wirst nicht versteckt! ");
@@ -84,19 +68,13 @@ public class SpecCommand implements CommandExecutor, Listener, TabCompleter {
                     if (Bukkit.getPlayer(args[1]) != null && Bukkit.getPlayer(args[1]).isOnline()) {
                         Player target = Bukkit.getPlayer(args[1]);
                         if (!Settings.uuids.contains(target.getUniqueId().toString())) {
-                            Settings.uuids.add(target.getUniqueId().toString());
-                            for (Player every : Bukkit.getOnlinePlayers()) {
-                                if (Settings.uuids.contains(every.getUniqueId().toString())) {
-                                    target.showPlayer(Main.getPlugin(Main.class), every);
-                                    continue;
-                                }
-                                every.hidePlayer(Main.getPlugin(Main.class), target);
-                            }
+                            hidePlayer(target);
                             sender.sendMessage(Main.getCustomPrefix("Hide") + "Der Spieler " + ChatColor.GREEN + target.getDisplayName() + ChatColor.DARK_GRAY + " wird nun versteckt. ");
                         } else {
                             sender.sendMessage(Main.getErrorPrefix() + "Der Spieler wird bereits versteckt");
                         }
-                    } else if (Bukkit.getOfflinePlayer(args[1]) != null) {
+                    } else {
+                        Bukkit.getOfflinePlayer(args[1]);
                         OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
                         if (!Settings.uuids.contains(target.getUniqueId().toString())) {
                             Settings.uuids.add(target.getUniqueId().toString());
@@ -104,33 +82,23 @@ public class SpecCommand implements CommandExecutor, Listener, TabCompleter {
                         } else {
                             sender.sendMessage(Main.getErrorPrefix() + "Der Spieler wird bereits versteckt");
                         }
-                    } else {
-                        sender.sendMessage(Main.getErrorPrefix() + "Der Spieler hat diesen Server noch nie betreten! ");
                     }
                 } else if (args[0].equalsIgnoreCase("remove")) {
                     if (Bukkit.getPlayer(args[1]) != null && Bukkit.getPlayer(args[1]).isOnline()) {
                         Player target = Bukkit.getPlayer(args[1]);
                         if (Settings.uuids.contains(target.getUniqueId().toString())) {
-                            Settings.uuids.remove(target.getUniqueId().toString());
-                            for (Player every : Bukkit.getOnlinePlayers()) {
-                                if (Settings.uuids.contains(every.getUniqueId().toString())) {
-                                    target.hidePlayer(Main.getPlugin(Main.class), every);
-                                    continue;
-                                }
-                                every.showPlayer(Main.getPlugin(Main.class), target);
-                            }
+                            unhidePlayer(target);
                             sender.sendMessage(Main.getCustomPrefix("Hide") + "Der Spieler " + ChatColor.GREEN + target.getDisplayName() + ChatColor.DARK_GRAY + " wird nun nicht weiter versteckt. ");
                         } else {
                             sender.sendMessage(Main.getErrorPrefix() + "Der Spieler wird nicht versteckt");
                         }
-                    } else if (Bukkit.getOfflinePlayer(args[1]) != null) {
+                    } else {
+                        Bukkit.getOfflinePlayer(args[1]);
                         OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
                         if (Settings.uuids.contains(target.getUniqueId().toString())) {
                             Settings.uuids.remove(target.getUniqueId().toString());
                             sender.sendMessage(Main.getCustomPrefix("Hide") + "Der Spieler " + ChatColor.GREEN + target.getName() + ChatColor.DARK_GRAY + " wird nun nicht weiter versteckt. ");
                         }
-                    } else {
-                        sender.sendMessage(Main.getErrorPrefix() + "Der Spieler hat diesen Server noch nie betreten! ");
                     }
                 } else {
                     sender.sendMessage(getUsage());
@@ -140,6 +108,28 @@ public class SpecCommand implements CommandExecutor, Listener, TabCompleter {
             }
         }
         return true;
+    }
+
+    private void hidePlayer(Player target) {
+        Settings.uuids.add(target.getUniqueId().toString());
+        for (Player every : Bukkit.getOnlinePlayers()) {
+            if (Settings.uuids.contains(every.getUniqueId().toString())) {
+                target.showPlayer(Main.getPlugin(Main.class), every);
+                continue;
+            }
+            every.hidePlayer(Main.getPlugin(Main.class), target);
+        }
+    }
+
+    private void unhidePlayer(Player target) {
+        Settings.uuids.remove(target.getUniqueId().toString());
+        for (Player every : Bukkit.getOnlinePlayers()) {
+            if (Settings.uuids.contains(every.getUniqueId().toString())) {
+                target.hidePlayer(Main.getPlugin(Main.class), every);
+                continue;
+            }
+            every.showPlayer(Main.getPlugin(Main.class), target);
+        }
     }
 
     private String getUsage() {
