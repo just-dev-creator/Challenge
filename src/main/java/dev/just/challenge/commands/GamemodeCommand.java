@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -19,17 +19,14 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
+        if (!sender.isOp()) {
+            sender.sendMessage(Main.getNoPermission());
+            return false;
+        }
         GameMode mode = GameMode.SURVIVAL;
         String name = "Survival";
 
-        if(!sender.isOp() && !(sender instanceof ConsoleCommandSender)) {
-            sender.sendMessage(Main.getErrorPrefix() + "Du hast keine Berechtigung, diesen Befehl zu verwenden.");
-            return true;
-        }
-
         if(args.length >= 1) {
-
             if(args[0].equalsIgnoreCase("0") || args[0].equalsIgnoreCase("s") || args[0].equalsIgnoreCase("survival")) {
                 mode = GameMode.SURVIVAL;
                 name = "Survival";
@@ -46,7 +43,6 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
                 sender.sendMessage(Main.getErrorPrefix() + "Verwendung: /gamemode (0, 1, 2, 3, survival, creative, adventure, spectator) [User]");
                 return true;
             }
-
         } else {
             sender.sendMessage(Main.getErrorPrefix() + "Verwendung: /gamemode (0, 1, 2, 3, survival, creative, adventure, spectator) [User]");
             return true;
@@ -58,11 +54,11 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
                 for(Player all : Bukkit.getOnlinePlayers()) {
                     all.setGameMode(mode);
                     all.sendMessage(Main.getCustomPrefix("Gamemode") + "Dein Spielmodus wurde zu " + name + " geändert");
-                    sender.sendMessage(Main.getCustomPrefix(("Gamemode") + "Der Spielmodus von " + all.getName() + " wurde zu " + name + " geändert"));
+                    sender.sendMessage(Main.getCustomPrefix("Gamemode") + "Der Spielmodus von " + all.getName() + " wurde zu " + name + " geändert");
                 }
             } else if(Bukkit.getPlayer(args[1]) != null && Bukkit.getPlayer(args[1]).isOnline()) {
                 Bukkit.getPlayer(args[1]).setGameMode(mode);
-                Bukkit.getPlayer(args[1]).sendMessage(Main.getCustomPrefix(("Gamemode") + "Dein Spielmodus wurde zu " + name + " geändert"));
+                Bukkit.getPlayer(args[1]).sendMessage(Main.getCustomPrefix("Gamemode") + "Dein Spielmodus wurde zu " + name + " geändert");
                 sender.sendMessage(Main.getCustomPrefix(("Gamemode") + "Der Spielmodus von " + Bukkit.getPlayer(args[1]).getName() + " wurde zu " + name + " geändert"));
             } else {
                 sender.sendMessage(Main.getErrorPrefix() + "Dieser Spieler ist nicht online.");
@@ -73,7 +69,7 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
                 ((Player) sender).setGameMode(mode);
                 sender.sendMessage(Main.getCustomPrefix("Gamemode") + "Dein Spielmodus wurde zu " + name + " geändert");
             } else {
-                sender.sendMessage(Main.getErrorPrefix() + "Dein Spielmodus kann nicht geändert werden.");
+                sender.sendMessage(Main.getNoPlayer());
             }
         }
 
