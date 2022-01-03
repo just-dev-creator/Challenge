@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: "adopt"
-          java-version: "16"
+          java-version: "17"
       - name: Download PaperMC
         uses: just-dev-creator/install-paper@v1.0.1
         with:
