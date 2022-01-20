@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -137,7 +137,7 @@ public class Timer {
         Bukkit.broadcastMessage(Main.getPrefix() + cause);
         Bukkit.broadcastMessage(Main.getPrefix() + "Damit ist die Challenge beendet!");
         Bukkit.broadcastMessage(Main.getPrefix() + "Zeit verschwendet: " + h + ":" + m + ":" + s);
-        Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_DEACTIVATE);
+        Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_DEACTIVATE);
     }
     public static void finishChallenge(String cause) {
         TimerCommand.timer_active = false;

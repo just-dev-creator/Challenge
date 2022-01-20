@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
 
 package dev.just.challenge.commands;
 
-import dev.just.challenge.utils.Sound;
 import dev.just.challenge.utils.Timer;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -36,12 +36,12 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
             sender.sendMessage(prefix() + "Du hast den Timer erfolgreich gestartet!");
             Bukkit.broadcastMessage(prefix() + "Der Timer ist gestartet!");
             timer_active = true;
-            Sound.broadcastSound(org.bukkit.Sound.BLOCK_ANVIL_PLACE);
+            Utils.broadcastSound(org.bukkit.Sound.BLOCK_ANVIL_PLACE);
             Timer.sendTimerUpdate();
         }
         else if (args[0].equalsIgnoreCase("pause")) {
             sender.sendMessage(prefix() + "Du hast den Timer erfolgreich pausiert.");
-            Sound.broadcastSound(org.bukkit.Sound.ITEM_TOTEM_USE);
+            Utils.broadcastSound(org.bukkit.Sound.ITEM_TOTEM_USE);
             timer_active = false;
             Timer.sendTimerUpdate();
         }
@@ -50,7 +50,7 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
             timer_sec = 0;
             timer_min = 0;
             timer_h = 0;
-            Sound.broadcastSound(org.bukkit.Sound.BLOCK_ANVIL_DESTROY);
+            Utils.broadcastSound(org.bukkit.Sound.BLOCK_ANVIL_DESTROY);
             timer_active = false;
             Timer.sendTimerUpdate();
         } else if (args.length == 2) {

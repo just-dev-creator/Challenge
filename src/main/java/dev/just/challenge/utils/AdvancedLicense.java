@@ -1,12 +1,11 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
 
 package dev.just.challenge.utils;
 
-import dev.just.challenge.beta.BetaInformation;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
@@ -56,7 +55,6 @@ public class AdvancedLicense {
 			log(1, ChatColor.GREEN + "Lizenz erfolgreich überprüft!");
 			log(1, ChatColor.BLUE + "Aktiviere Plugin" + ChatColor.GRAY + "...");
 			log(0, ChatColor.GRAY + "✗ " + ChatColor.BLUE + "Lizenzsystem" + ChatColor.GRAY + " ✗");
-			BetaInformation.sendInformation();
 			return true;
 		} else {
 			log(1, ChatColor.RED + "Lizenz konnte nicht verifiziert werden.");

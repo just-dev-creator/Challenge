@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -10,8 +10,8 @@ import dev.just.challenge.Main;
 import dev.just.challenge.commands.TimerCommand;
 import dev.just.challenge.utils.ScoreboardManager;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.Sound;
 import dev.just.challenge.utils.Timer;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -63,10 +63,10 @@ public class Parcour implements Listener {
                 z.put(player, player.getLocation().getBlockZ());
                 world.put(player, player.getWorld());
                 ScoreboardManager.checkpoints();
-                Sound.playSound(org.bukkit.Sound.ENTITY_EXPERIENCE_ORB_PICKUP, player);
+                Utils.playSound(org.bukkit.Sound.ENTITY_EXPERIENCE_ORB_PICKUP, player);
             } else if (player.getLocation().getBlock().getRelative(BlockFace.SELF).getType().equals(Material.HEAVY_WEIGHTED_PRESSURE_PLATE)) {
                 player.sendMessage(Main.getCustomPrefix("Parkour") + "Ziel erreicht!");
-                Sound.playSound(org.bukkit.Sound.ENTITY_ENDER_DRAGON_DEATH, player);
+                Utils.playSound(org.bukkit.Sound.ENTITY_ENDER_DRAGON_DEATH, player);
                 Timer.finishChallengeCausedOfPlayer("Er hat den Parkour geschafft!", player);
             }
             if (Settings.settings.get(Settings.ItemType.PARCOUR_LAVA).equals(Settings.ItemState.ENABLED)) {

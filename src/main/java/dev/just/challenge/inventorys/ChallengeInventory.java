@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -8,7 +8,6 @@ package dev.just.challenge.inventorys;
 
 import dev.just.challenge.Main;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.Sound;
 import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -141,7 +140,7 @@ public class ChallengeInventory implements Listener {
 //                noinv.setItemMeta(noinv_m);
 //                event.getInventory().setItem(9, noinv);
                 p.updateInventory();
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung NoInv deaktiviert");
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.NOINV, Settings.ItemState.DISABLED))) {
                 Settings.settings.put(Settings.ItemType.NOINV, Settings.ItemState.ENABLED);
@@ -158,7 +157,7 @@ public class ChallengeInventory implements Listener {
 //                noinv.setItemMeta(noinv_m);
 //                event.getInventory().setItem(9, noinv);
                 p.updateInventory();
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung NoInv faktiviert");
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.DRAGON, Settings.ItemState.ENABLED))) {
                 Settings.settings.put(Settings.ItemType.DRAGON, Settings.ItemState.DISABLED);
@@ -179,7 +178,7 @@ public class ChallengeInventory implements Listener {
 //                dragonDeath_i.setItemMeta(dragonDeath_m);
 //                event.getInventory().setItem(0, dragonDeath_i);
                 p.updateInventory();
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Ende Enderdrache deaktiviert");
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.DRAGON, Settings.ItemState.DISABLED))) {
                 Settings.settings.put(Settings.ItemType.DRAGON, Settings.ItemState.ENABLED);
@@ -199,7 +198,7 @@ public class ChallengeInventory implements Listener {
 //                dragonDeath_m.setLore(dragonDeath_lore);
 //                dragonDeath_i.setItemMeta(dragonDeath_m);
 //                event.getInventory().setItem(0, dragonDeath_i);
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 p.updateInventory();
                 Bukkit.broadcastMessage(Main.getPrefix() + "Ende Enderdrache aktiviert");
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.DEATH, Settings.ItemState.ENABLED))) {
@@ -207,7 +206,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.DEATH, Settings.ItemState.DISABLED);
                 inventory.setItem(11, Settings.getMenuItem(Settings.ItemType.DEATH, Settings.ItemState.DISABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Ende Tod deaktiviert");
                 p.updateInventory();
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.DEATH, Settings.ItemState.DISABLED))) {
@@ -215,7 +214,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.DEATH, Settings.ItemState.ENABLED);
                 inventory.setItem(11, Settings.getMenuItem(Settings.ItemType.DEATH, Settings.ItemState.ENABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Ende Tod aktiviert");
                 p.updateInventory();
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.FORCEMATH, Settings.ItemState.ENABLED))) {
@@ -223,7 +222,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.FORCEMATH, Settings.ItemState.DISABLED);
                 inventory.setItem(29, Settings.getMenuItem(Settings.ItemType.FORCEMATH, Settings.ItemState.DISABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung ForceMath deaktiviert");
                 p.updateInventory();
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.FORCEMATH, Settings.ItemState.DISABLED))) {
@@ -231,7 +230,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.FORCEMATH, Settings.ItemState.ENABLED);
                 inventory.setItem(29, Settings.getMenuItem(Settings.ItemType.FORCEMATH, Settings.ItemState.ENABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung ForceMath aktiviert");
                 p.updateInventory();
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.FORCEBIOME, Settings.ItemState.DISABLED))) {
@@ -239,7 +238,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.FORCEBIOME, Settings.ItemState.ENABLED);
                 inventory.setItem(30, Settings.getMenuItem(Settings.ItemType.FORCEBIOME, Settings.ItemState.ENABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung ForceBiome aktiviert");
                 p.updateInventory();
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.FORCEBIOME, Settings.ItemState.ENABLED))) {
@@ -247,7 +246,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.FORCEBIOME, Settings.ItemState.DISABLED);
                 inventory.setItem(30, Settings.getMenuItem(Settings.ItemType.FORCEBIOME, Settings.ItemState.DISABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung ForceBiome deaktiviert");
                 p.updateInventory();
             } else if (event.getCurrentItem().isSimilar(Settings.getMenuItem(Settings.ItemType.FACING, Settings.ItemState.DISABLED))) {
@@ -255,7 +254,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.FACING, Settings.ItemState.ENABLED);
                 inventory.setItem(32, Settings.getMenuItem(Settings.ItemType.FACING, Settings.ItemState.ENABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung Facing aktiviert. ");
                 p.updateInventory();
             } else if (event.getCurrentItem().isSimilar(Settings.getMenuItem(Settings.ItemType.FACING, Settings.ItemState.ENABLED))) {
@@ -263,7 +262,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.FACING, Settings.ItemState.DISABLED);
                 inventory.setItem(32, Settings.getMenuItem(Settings.ItemType.FACING, Settings.ItemState.DISABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung Facing deaktivert. ");
                 p.updateInventory();
             } /** ONELOOK **/
@@ -307,7 +306,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.FORCEEFFECT, Settings.ItemState.ENABLED);
                 inventory.setItem(33, Settings.getMenuItem(Settings.ItemType.FORCEEFFECT, Settings.ItemState.ENABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung ForceEffect aktivert. ");
                 p.updateInventory();
             } else if (event.getCurrentItem().isSimilar(Settings.getMenuItem(Settings.ItemType.FORCEEFFECT, Settings.ItemState.ENABLED))) {
@@ -315,7 +314,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.FORCEEFFECT, Settings.ItemState.DISABLED);
                 inventory.setItem(33, Settings.getMenuItem(Settings.ItemType.FORCEEFFECT, Settings.ItemState.DISABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung ForceEffect deaktivert. ");
                 p.updateInventory();
             } else if (event.getCurrentItem().isSimilar(Settings.getMenuItem(Settings.ItemType.FORCEGLEICHUNG, Settings.ItemState.DISABLED))) {
@@ -324,7 +323,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.FORCEGLEICHUNG, Settings.ItemState.ENABLED);
                 inventory.setItem(34, Settings.getMenuItem(Settings.ItemType.FORCEGLEICHUNG, Settings.ItemState.ENABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 Utils.sendSettingsChange((Player) event.getWhoClicked(), "Einschränkung ForceGleichung aktiviert. ");
                 p.updateInventory();
             } else if (event.getCurrentItem().isSimilar(Settings.getMenuItem(Settings.ItemType.FORCEGLEICHUNG, Settings.ItemState.ENABLED))) {
@@ -333,7 +332,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.FORCEGLEICHUNG, Settings.ItemState.DISABLED);
                 inventory.setItem(34, Settings.getMenuItem(Settings.ItemType.FORCEGLEICHUNG, Settings.ItemState.DISABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Utils.sendSettingsChange((Player) event.getWhoClicked(), "Einschränkung ForceGleichung deaktiviert. ");
                 p.updateInventory();
             } else if (event.getCurrentItem().isSimilar(Settings.getMenuItem(Settings.ItemType.NOREMOVE, Settings.ItemState.ENABLED))) {
@@ -342,7 +341,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.NOREMOVE, Settings.ItemState.DISABLED);
                 inventory.setItem(14, Settings.getMenuItem(Settings.ItemType.NOREMOVE, Settings.ItemState.DISABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Utils.sendSettingsChange((Player) event.getWhoClicked(), "Einschränkung NoRemove deaktiviert. ");
                 p.updateInventory();
             } else if (event.getCurrentItem().isSimilar(Settings.getMenuItem(Settings.ItemType.NOREMOVE, Settings.ItemState.DISABLED))) {
@@ -351,7 +350,7 @@ public class ChallengeInventory implements Listener {
                 Settings.setConfig(Settings.ItemType.NOREMOVE, Settings.ItemState.ENABLED);
                 inventory.setItem(14, Settings.getMenuItem(Settings.ItemType.NOREMOVE, Settings.ItemState.ENABLED));
 
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 Utils.sendSettingsChange((Player) event.getWhoClicked(), "Einschränkung NoRemove aktiviert. ");
                 p.updateInventory();
             }

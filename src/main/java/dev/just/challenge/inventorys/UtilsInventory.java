@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -8,7 +8,6 @@ package dev.just.challenge.inventorys;
 
 import dev.just.challenge.Main;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.Sound;
 import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -125,7 +124,7 @@ public class UtilsInventory implements Listener {
                     inventory.setItem(2, Settings.getMenuItem(Settings.ItemType.PARCOUR, Settings.ItemState.ENABLED));
                     player.updateInventory();
                     Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung Parkour aktiviert");
-                    Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                    Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                     event.setCancelled(true);
                     return;
                 }
@@ -145,7 +144,7 @@ public class UtilsInventory implements Listener {
                     inventory.setItem(2, Settings.getMenuItem(Settings.ItemType.PARCOUR, Settings.ItemState.DISABLED));
                     player.updateInventory();
                     Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung Parkour deaktiviert");
-                    Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                    Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                     event.setCancelled(true);
                     return;
                 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -8,7 +8,7 @@ package dev.just.challenge.inventorys;
 
 import dev.just.challenge.Main;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.Sound;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -133,7 +133,7 @@ public class ParkourInventory implements Listener {
 
 
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung Parkour aktiviert");
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.PARCOUR_ENABLED, Settings.ItemState.ENABLED))) {
                 Settings.settings.put(Settings.ItemType.PARCOUR, Settings.ItemState.DISABLED);
                 Settings.setConfig(Settings.ItemType.PARCOUR, Settings.ItemState.DISABLED);
@@ -152,7 +152,7 @@ public class ParkourInventory implements Listener {
 
 
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung Parkour deaktiviert");
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
             } else if (event.getCurrentItem().getType().equals(Material.LIGHT_WEIGHTED_PRESSURE_PLATE)) {
                 event.getWhoClicked().getInventory().addItem(new ItemStack(Material.LIGHT_WEIGHTED_PRESSURE_PLATE));
             } else if (event.getCurrentItem().getType().equals(Material.HEAVY_WEIGHTED_PRESSURE_PLATE)) {
@@ -176,7 +176,7 @@ public class ParkourInventory implements Listener {
                 ((Player) event.getWhoClicked()).updateInventory();
 
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung Lava deaktiviert");
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.PARCOUR_LAVA, Settings.ItemState.DISABLED))) {
                 Settings.settings.put(Settings.ItemType.PARCOUR_LAVA, Settings.ItemState.ENABLED);
                 Settings.setConfig(Settings.ItemType.PARCOUR_LAVA, Settings.ItemState.ENABLED);
@@ -196,7 +196,7 @@ public class ParkourInventory implements Listener {
                 ((Player) event.getWhoClicked()).updateInventory();
 
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung Lava aktiviert");
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.PARCOUR_WATER, Settings.ItemState.ENABLED))) {
                 Settings.settings.put(Settings.ItemType.PARCOUR_WATER, Settings.ItemState.DISABLED);
                 Settings.setConfig(Settings.ItemType.PARCOUR_WATER, Settings.ItemState.DISABLED);
@@ -217,7 +217,7 @@ public class ParkourInventory implements Listener {
                 ((Player) event.getWhoClicked()).updateInventory();
 
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung Wasser deaktiviert");
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
             } else if (event.getCurrentItem().equals(Settings.getMenuItem(Settings.ItemType.PARCOUR_WATER, Settings.ItemState.DISABLED))) {
                 Settings.settings.put(Settings.ItemType.PARCOUR_WATER, Settings.ItemState.ENABLED);
                 Settings.setConfig(Settings.ItemType.PARCOUR_WATER, Settings.ItemState.ENABLED);
@@ -237,7 +237,7 @@ public class ParkourInventory implements Listener {
                 ((Player) event.getWhoClicked()).updateInventory();
 
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung Wasser aktiviert");
-                Sound.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
+                Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
             }
         }
     }
