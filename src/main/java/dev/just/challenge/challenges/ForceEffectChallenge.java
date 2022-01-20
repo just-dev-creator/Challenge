@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -9,9 +9,9 @@ package dev.just.challenge.challenges;
 import dev.just.challenge.Main;
 import dev.just.challenge.commands.TimerCommand;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.ShortInteger;
 import dev.just.challenge.utils.ShortString;
 import dev.just.challenge.utils.Timer;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
@@ -74,7 +74,7 @@ public class ForceEffectChallenge implements Listener {
                     ForceEffectChallenge.this.updateBossbar();
                     if (TimerCommand.timer_active) {
                         if (phase == ForceState.LOADING) {
-                            Bukkit.broadcastMessage(Main.getCustomPrefix("ForceEffect") + "Erste Aufgabe in frühestens " + ShortInteger.run(240));
+                            Bukkit.broadcastMessage(Main.getCustomPrefix("ForceEffect") + "Erste Aufgabe in frühestens " + Utils.shortInteger(240));
                             ForceEffectChallenge.this.generateUpcoming();
                         }
                         if (ForceEffectChallenge.this.upcoming != null) {
@@ -85,7 +85,7 @@ public class ForceEffectChallenge implements Listener {
                                     ForceEffectChallenge.this.upcoming = null;
                                     ForceEffectChallenge.this.time = (random.nextInt(180) + 120);
                                     ForceEffectChallenge.this.generateUpcoming();
-                                    Bukkit.broadcastMessage(Main.getCustomPrefix("ForceEffect") + ChatColor.DARK_GREEN + "Der Spieler " + ChatColor.GREEN + all.getName() + ChatColor.DARK_GREEN + " hat den Effekt erhalten. Nächste Aufgabe in frühestens " + ShortInteger.run(180) + ".");
+                                    Bukkit.broadcastMessage(Main.getCustomPrefix("ForceEffect") + ChatColor.DARK_GREEN + "Der Spieler " + ChatColor.GREEN + all.getName() + ChatColor.DARK_GREEN + " hat den Effekt erhalten. Nächste Aufgabe in frühestens " + Utils.shortInteger(180) + ".");
                                 }
                             }
                         }
@@ -170,7 +170,7 @@ public class ForceEffectChallenge implements Listener {
             this.bossBar.setColor(BarColor.WHITE);
             this.bossBar.setProgress(1.0D);
         } else {
-            this.bossBar.setTitle(ChatColor.DARK_GREEN + "Nächster Effekt: " + ChatColor.GREEN + effectName + ChatColor.DARK_GRAY + " | " + ShortInteger.run(this.time));
+            this.bossBar.setTitle(ChatColor.DARK_GREEN + "Nächster Effekt: " + ChatColor.GREEN + effectName + ChatColor.DARK_GRAY + " | " + Utils.shortInteger(this.time));
             this.bossBar.setProgress(Double.valueOf((this.time * 100 / this.startTime) * 0.01D).doubleValue());
             if (this.bossBar.getProgress() > 0.66D) {
                 this.bossBar.setColor(BarColor.GREEN);
@@ -207,7 +207,7 @@ public class ForceEffectChallenge implements Listener {
             event.getPlayer().sendMessage(Main.getCustomPrefix("ForceEffect") + "Die Zeit wurde auf 2 gesetzt.");
             event.setCancelled(true);
         } else if (event.getMessage().equalsIgnoreCase("!force time")) {
-            player.sendMessage(Main.getCustomPrefix("ForceEffect") + "Die Zeit ist: " + ShortInteger.run(this.time));
+            player.sendMessage(Main.getCustomPrefix("ForceEffect") + "Die Zeit ist: " + Utils.shortInteger(this.time));
             event.setCancelled(true);
         } else if (event.getMessage().equalsIgnoreCase("!force upcoming")) {
             player.sendMessage(Main.getCustomPrefix("ForceEffect") + "Der nächste Effekt ist: " + ChatColor.GREEN + effectName);

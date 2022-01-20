@@ -73,7 +73,7 @@ public class Timer {
                             return;
                         }
                         int sec = ((timer_h * 60 * 60) + (timer_min * 60) + timer_sec);
-                        players.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.DARK_AQUA + ShortInteger.run(sec)));
+                        players.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.DARK_AQUA + Utils.shortInteger(sec)));
                     }
                 }
                 if (!timer_active) {

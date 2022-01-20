@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -9,9 +9,9 @@ package dev.just.challenge.challenges;
 import dev.just.challenge.Main;
 import dev.just.challenge.commands.TimerCommand;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.ShortInteger;
 import dev.just.challenge.utils.ShortString;
 import dev.just.challenge.utils.Timer;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Biome;
@@ -65,7 +65,7 @@ public class ForceBiome implements Listener {
                     ForceBiome.this.updateBossbar();
                     if (TimerCommand.timer_active) {
                         if (phase == ForceState.LOADING) {
-                            Bukkit.broadcastMessage(Main.getCustomPrefix("ForceBiome") + "Erste Aufgabe in frühestens " + ShortInteger.run(600));
+                            Bukkit.broadcastMessage(Main.getCustomPrefix("ForceBiome") + "Erste Aufgabe in frühestens " + Utils.shortInteger(600));
                             ForceBiome.this.generateUpcoming();
                         }
                         if (ForceBiome.this.time == 0) {
@@ -84,7 +84,7 @@ public class ForceBiome implements Listener {
                                     ForceBiome.this.upcoming = null;
                                     ForceBiome.this.time = (random.nextInt(600) + 600);
                                     ForceBiome.this.generateUpcoming();
-                                    Bukkit.broadcastMessage(Main.getCustomPrefix("ForceBiome") + ChatColor.DARK_GREEN + "Es haben alle Spieler die Aufgabe korrekt beantwortet. Nächste Aufgabe in frühestens " + ShortInteger.run(600) + ".");
+                                    Bukkit.broadcastMessage(Main.getCustomPrefix("ForceBiome") + ChatColor.DARK_GREEN + "Es haben alle Spieler die Aufgabe korrekt beantwortet. Nächste Aufgabe in frühestens " + Utils.shortInteger(600) + ".");
                                 } else {
                                     Timer.endChallenge(ChatColor.RED + failed.getName() + " war nicht im richtigen Biom.", failed);
                                 }
@@ -143,7 +143,7 @@ public class ForceBiome implements Listener {
             this.bossBar.setColor(BarColor.WHITE);
             this.bossBar.setProgress(1.0D);
         } else {
-            this.bossBar.setTitle(ChatColor.DARK_GREEN + "Nächstes Biom: " + ChatColor.RED + biomName + ChatColor.DARK_GRAY + " | " + ShortInteger.run(this.time));
+            this.bossBar.setTitle(ChatColor.DARK_GREEN + "Nächstes Biom: " + ChatColor.RED + biomName + ChatColor.DARK_GRAY + " | " + Utils.shortInteger(this.time));
             this.bossBar.setProgress(Double.valueOf((this.time * 100 / this.startTime) * 0.01D).doubleValue());
             if (this.bossBar.getProgress() > 0.66D) {
                 this.bossBar.setColor(BarColor.GREEN);
@@ -154,9 +154,9 @@ public class ForceBiome implements Listener {
             }
         }
         for (Player all : Bukkit.getOnlinePlayers()) {
-            if (this.bossBar.getTitle().equals(ChatColor.DARK_GREEN + "Nächstes Biom: " + ChatColor.RED + biomName + ChatColor.DARK_GRAY + " | " + ShortInteger.run(this.time)) &&
+            if (this.bossBar.getTitle().equals(ChatColor.DARK_GREEN + "Nächstes Biom: " + ChatColor.RED + biomName + ChatColor.DARK_GRAY + " | " + Utils.shortInteger(this.time)) &&
                     all.getLocation().getWorld().getBiome(all.getLocation().getBlockX(), all.getLocation().getBlockY(), all.getLocation().getBlockZ()).equals(biome)) {
-                this.bossBar.setTitle(ChatColor.DARK_GREEN + "Nächstes Biom: " + ChatColor.GREEN + biomName + ChatColor.DARK_GRAY + " | " + ShortInteger.run(this.time));
+                this.bossBar.setTitle(ChatColor.DARK_GREEN + "Nächstes Biom: " + ChatColor.GREEN + biomName + ChatColor.DARK_GRAY + " | " + Utils.shortInteger(this.time));
             }
             this.bossBar.addPlayer(all);
         }
@@ -184,7 +184,7 @@ public class ForceBiome implements Listener {
             event.getPlayer().sendMessage(Main.getCustomPrefix("ForceBiome") + "Die Zeit wurde auf 2 gesetzt.");
             event.setCancelled(true);
         } else if (event.getMessage().equalsIgnoreCase("!force time")) {
-            player.sendMessage(Main.getCustomPrefix("ForceBiome") + "Die Zeit ist: " + ShortInteger.run(this.time));
+            player.sendMessage(Main.getCustomPrefix("ForceBiome") + "Die Zeit ist: " + Utils.shortInteger(this.time));
             event.setCancelled(true);
         } else if (event.getMessage().equalsIgnoreCase("!force upcoming")) {
             player.sendMessage(Main.getCustomPrefix("ForceBiome") + "Das nächste Biom ist: " + ChatColor.GREEN + biome.toString());

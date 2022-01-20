@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -9,8 +9,8 @@ package dev.just.challenge.challenges;
 import dev.just.challenge.Main;
 import dev.just.challenge.commands.TimerCommand;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.ShortInteger;
 import dev.just.challenge.utils.Timer;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
@@ -68,14 +68,14 @@ public class ForceGleichungen implements Listener {
                     updateBossbar();
                     if (Timer.isRunning()) {
                         if (state == State.LOADING) {
-                            Bukkit.broadcastMessage(Main.getCustomPrefix("ForceGleichung") + "Erste Aufgabe in frühestens " + ShortInteger.run(600));
+                            Bukkit.broadcastMessage(Main.getCustomPrefix("ForceGleichung") + "Erste Aufgabe in frühestens " + Utils.shortInteger(600));
                             generateUpcoming();
                         }
                         if (time == 0) {
                             if (upcoming != null) {
                                 if (success) {
                                     strings.remove(upcoming);
-                                    Bukkit.broadcastMessage(Main.getCustomPrefix("ForceGleichung") + ChatColor.DARK_GREEN + "Der Spieler hat die Aufgabe korrekt beantwortet. Nächste Aufgabe in frühestens " + ShortInteger.run(600) + ".");
+                                    Bukkit.broadcastMessage(Main.getCustomPrefix("ForceGleichung") + ChatColor.DARK_GREEN + "Der Spieler hat die Aufgabe korrekt beantwortet. Nächste Aufgabe in frühestens " + Utils.shortInteger(600) + ".");
                                     upcoming = null;
                                     gleichung = null;
                                     time = (random.nextInt(180) + 120);
@@ -231,7 +231,7 @@ public class ForceGleichungen implements Listener {
             time = 2;
             event.setCancelled(true);
         } else if (event.getMessage().equalsIgnoreCase("!force time")) {
-            player.sendMessage(Main.getCustomPrefix("ForceGleichung") + "Die Zeit ist: " + ShortInteger.run(time));
+            player.sendMessage(Main.getCustomPrefix("ForceGleichung") + "Die Zeit ist: " + Utils.shortInteger(time));
             event.setCancelled(true);
         } else if (event.getMessage().equalsIgnoreCase("!force upcoming")) {
             player.sendMessage(Main.getCustomPrefix("ForceGleichung") + "Die nächste Gleichung ist: " + ChatColor.GREEN + gleichung);

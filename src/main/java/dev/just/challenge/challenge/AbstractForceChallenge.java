@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -7,8 +7,8 @@
 package dev.just.challenge.challenge;
 
 import dev.just.challenge.Main;
-import dev.just.challenge.utils.ShortInteger;
 import dev.just.challenge.utils.Timer;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -103,7 +103,7 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
             this.bossBar.setColor(BarColor.WHITE);
             this.bossBar.setProgress(1.0D);
         } else {
-            this.bossBar.setTitle(getTitle(this.upcoming) + ChatColor.DARK_GRAY + " | " + ShortInteger.run(this.time));
+            this.bossBar.setTitle(getTitle(this.upcoming) + ChatColor.DARK_GRAY + " | " + Utils.shortInteger(this.time));
             this.bossBar.setProgress(Double.valueOf((this.time * 100 / this.startTime) * 0.01D).doubleValue());
             if (this.bossBar.getProgress() > 0.66D) {
                 this.bossBar.setColor(BarColor.GREEN);
@@ -173,7 +173,7 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
                                     AbstractForceChallenge.this.firstTaskMinTime()
                     ) + AbstractForceChallenge.this.firstTaskMinTime();
                     Bukkit.broadcastMessage(Main.getCustomPrefix(AbstractForceChallenge.this.name) + "Erste Aufgabe " +
-                            "in frühestens " + ShortInteger.run(AbstractForceChallenge.this.firstTaskMinTime()));
+                            "in frühestens " + Utils.shortInteger(AbstractForceChallenge.this.firstTaskMinTime()));
                     AbstractForceChallenge.this.generateUpcoming();
                 }
                 if (AbstractForceChallenge.this.upcoming != null) {
@@ -228,7 +228,7 @@ abstract public class AbstractForceChallenge extends AbstractChallenge implement
                     "gesetzt.");
             event.setCancelled(true);
         } else if (event.getMessage().equalsIgnoreCase("!force time")) {
-            player.sendMessage(Main.getCustomPrefix(this.name) + "Die Zeit ist: " + ShortInteger.run(this.time));
+            player.sendMessage(Main.getCustomPrefix(this.name) + "Die Zeit ist: " + Utils.shortInteger(this.time));
             event.setCancelled(true);
         } else if (event.getMessage().equalsIgnoreCase("!force upcoming")) {
             player.sendMessage(Main.getCustomPrefix(this.name) + "Das nächste Objekt ist: " +

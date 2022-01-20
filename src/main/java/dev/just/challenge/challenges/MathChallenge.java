@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -9,8 +9,8 @@ package dev.just.challenge.challenges;
 import dev.just.challenge.Main;
 import dev.just.challenge.commands.TimerCommand;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.ShortInteger;
 import dev.just.challenge.utils.Timer;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.boss.BarColor;
@@ -63,7 +63,7 @@ public class MathChallenge implements Listener {
                     MathChallenge.this.updateBossbar();
                     if (TimerCommand.timer_active) {
                         if (MathChallenge.this.phase == ForceState.LOADING) {
-                            Bukkit.broadcastMessage(Main.getCustomPrefix("ForceMath") + "Erste Aufgabe in frühestens " + ShortInteger.run(120));
+                            Bukkit.broadcastMessage(Main.getCustomPrefix("ForceMath") + "Erste Aufgabe in frühestens " + Utils.shortInteger(120));
                             MathChallenge.this.generateUpcoming();
                         }
                         if (MathChallenge.this.time == 0) {
@@ -87,7 +87,7 @@ public class MathChallenge implements Listener {
                                     MathChallenge.this.time = (random.nextInt(120) + 120);
                                     MathChallenge.this.end.clear();
                                     MathChallenge.this.generateUpcoming();
-                                    Bukkit.broadcastMessage(Main.getCustomPrefix("ForceMath") + ChatColor.DARK_GREEN + "Es haben alle Spieler die Aufgabe korrekt beantwortet. Nächste Aufgabe in frühestens " + ShortInteger.run(120) + ".");
+                                    Bukkit.broadcastMessage(Main.getCustomPrefix("ForceMath") + ChatColor.DARK_GREEN + "Es haben alle Spieler die Aufgabe korrekt beantwortet. Nächste Aufgabe in frühestens " + Utils.shortInteger(120) + ".");
                                 } else if (failed != null) {
                                     Bukkit.broadcastMessage(Main.getCustomPrefix("ForceMath") + "Richtig wäre gewesen: " + ChatColor.GREEN + solve);
                                     Timer.endChallenge(ChatColor.RED + failed.getName() + " hat die Aufgabe nicht richtig beantwortet.", failed);
@@ -136,7 +136,7 @@ public class MathChallenge implements Listener {
             this.bossBar.setColor(BarColor.WHITE);
             this.bossBar.setProgress(1.0D);
         } else {
-            this.bossBar.setTitle(ChatColor.DARK_GREEN + "Nächste Rechnung: " + ChatColor.GREEN + this.upcoming + ChatColor.DARK_GRAY + " | " + ShortInteger.run(this.time));
+            this.bossBar.setTitle(ChatColor.DARK_GREEN + "Nächste Rechnung: " + ChatColor.GREEN + this.upcoming + ChatColor.DARK_GRAY + " | " + Utils.shortInteger(this.time));
             this.bossBar.setProgress(Double.valueOf((this.time * 100 / this.startTime) * 0.01D).doubleValue());
             if (this.bossBar.getProgress() > 0.66D) {
                 this.bossBar.setColor(BarColor.GREEN);
@@ -173,7 +173,7 @@ public class MathChallenge implements Listener {
             event.getPlayer().sendMessage(Main.getCustomPrefix("ForceMath") + "Die Zeit wurde auf 2 gesetzt.");
             event.setCancelled(true);
         } else if (event.getMessage().equalsIgnoreCase("!force time")) {
-            player.sendMessage(Main.getCustomPrefix("ForceMath") + "Die Zeit ist: " + ShortInteger.run(this.time));
+            player.sendMessage(Main.getCustomPrefix("ForceMath") + "Die Zeit ist: " + Utils.shortInteger(this.time));
             event.setCancelled(true);
         } else if (event.getMessage().equalsIgnoreCase("!force upcoming")) {
             player.sendMessage(Main.getCustomPrefix("ForceMath") + "Die nächste Aufgabe ist: " + ChatColor.GREEN + this.z1 + " • " + this.z2);
