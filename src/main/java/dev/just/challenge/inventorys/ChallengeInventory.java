@@ -69,52 +69,6 @@ public class ChallengeInventory implements Listener {
         inventory.setItem(32, Settings.getMenuItem(Settings.ItemType.FACING, Settings.settings.get(Settings.ItemType.FACING)));
         inventory.setItem(33, Settings.getMenuItem(Settings.ItemType.FORCEEFFECT, Settings.settings.get(Settings.ItemType.FORCEEFFECT)));
         inventory.setItem(34, Settings.getMenuItem(Settings.ItemType.FORCEGLEICHUNG, Settings.settings.get(Settings.ItemType.FORCEGLEICHUNG)));
-//        if (!noInv) {
-//            ItemStack noinv = new ItemBuilder(Material.CHEST)
-//                    .displayname(ChatColor.GRAY + "Ohne Inventare");
-//            ItemStack noinv = new ItemStack(Material.CHEST);
-//            ItemMeta noinv_m = noinv.getItemMeta();
-//            noinv_m.setDisplayName(ChatColor.GRAY + "Ohne Inventare");
-//            noinv.setItemMeta(noinv_m);
-//            inventory.setItem(9, noinv);
-//        }
-//        else {
-//
-//            ItemBuilder noinv = new ItemBuilder(Material.CHEST)
-//                .displayname(ChatColor.RED + "Ohne Inventare")
-//                .enchant(Enchantment.THORNS, 1);
-//            ItemStack noinv = new ItemStack(Material.CHEST);
-//            ItemMeta noinv_m = noinv.getItemMeta();
-//            noinv_m.setDisplayName(ChatColor.RED + "Ohne Inventare");
-//            noinv.setItemMeta(noinv_m);
-//            inventory.setItem(9, noinv);
-//        }
-//        if (!dragonDeath) {
-//            ItemStack dragonDeath = new ItemBuilder(Material.DRAGON_HEAD)
-//                    .displayname(ChatColor.GRAY + "Enderdrachen-Tod")
-//                    .lore(ChatColor.LIGHT_PURPLE + "Die Challenge ist beim Tod des Enderdrachens nicht beendet.");
-//            ItemStack dragonDeath_i = new ItemStack(Material.DRAGON_HEAD);
-//            ItemMeta dragonDeath_m = dragonDeath_i.getItemMeta();
-//            dragonDeath_m.setDisplayName(ChatColor.GRAY + "Enderdrachen-Tod");
-//            ArrayList<String> dragonDeath_lore = new ArrayList<>();
-//            dragonDeath_lore.add(ChatColor.LIGHT_PURPLE + "Die Challenge ist beim Tod des Enderdrachens nicht beendet.");
-//            dragonDeath_m.setLore(dragonDeath_lore);
-//            dragonDeath_i.setItemMeta(dragonDeath_m);
-//            inventory.setItem(0, dragonDeath_i);
-//        } else {
-//            ItemStack dragonDeath = new ItemBuilder(Material.DRAGON_HEAD)
-//                    .displayname(ChatColor.YELLOW + "Enderdrachen-Tod")
-//                    .lore(ChatColor.LIGHT_PURPLE + "Die Challenge ist beim Tod des Enderdrachens beendet.")
-//                    .enchant(Enchantment.THORNS, 1);
-//            ItemStack dragonDeath_i = new ItemStack(Material.DRAGON_HEAD);
-//            ItemMeta dragonDeath_m = dragonDeath_i.getItemMeta();
-//            dragonDeath_m.setDisplayName(ChatColor.YELLOW + "Enderdrachen-Tod");
-//            ArrayList<String> dragonDeath_lore = new ArrayList<>();
-//            dragonDeath_lore.add(ChatColor.LIGHT_PURPLE + "Die Challenge ist beim Tod des Enderdrachens beendet.");
-//            dragonDeath_m.setLore(dragonDeath_lore);
-//            dragonDeath_i.setItemMeta(dragonDeath_m);
-//            inventory.setItem(0, dragonDeath_i);
-//        }
     }
     @EventHandler
     public void onKlick(InventoryClickEvent event) {
@@ -128,17 +82,6 @@ public class ChallengeInventory implements Listener {
                 Settings.settings.put(Settings.ItemType.NOINV, Settings.ItemState.DISABLED);
                 Settings.setConfig(Settings.ItemType.NOINV, Settings.ItemState.DISABLED);
                 inventory.setItem(28, Settings.getMenuItem(Settings.ItemType.NOINV, Settings.ItemState.DISABLED));
-//                noInv = true;
-//                Config.get().set("challenge.inventory", true);
-//                Config.save();
-//                ItemStack noinv = new ItemBuilder(Material.CHEST)
-//                        .displayname(ChatColor.RED + "Ohne Inventare")
-//                        .enchant(Enchantment.THORNS, 1);
-//                ItemStack noinv = new ItemStack(Material.CHEST);
-//                ItemMeta noinv_m = noinv.getItemMeta();
-//                noinv_m.setDisplayName(ChatColor.RED + "Ohne Inventare");
-//                noinv.setItemMeta(noinv_m);
-//                event.getInventory().setItem(9, noinv);
                 p.updateInventory();
                 Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung NoInv deaktiviert");
@@ -146,16 +89,6 @@ public class ChallengeInventory implements Listener {
                 Settings.settings.put(Settings.ItemType.NOINV, Settings.ItemState.ENABLED);
                 Settings.setConfig(Settings.ItemType.NOINV, Settings.ItemState.ENABLED);
                 inventory.setItem(28, Settings.getMenuItem(Settings.ItemType.NOINV, Settings.ItemState.ENABLED));
-//                noInv = false;
-//                Config.get().set("challenge.inventory", false);
-//                Config.save();
-//                ItemStack noinv = new ItemBuilder(Material.CHEST)
-//                        .displayname(ChatColor.GRAY + "Ohne Inventare");
-//                ItemStack noinv = new ItemStack(Material.CHEST);
-//                ItemMeta noinv_m = noinv.getItemMeta();
-//                noinv_m.setDisplayName(ChatColor.GRAY + "Ohne Inventare");
-//                noinv.setItemMeta(noinv_m);
-//                event.getInventory().setItem(9, noinv);
                 p.updateInventory();
                 Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Einschränkung NoInv faktiviert");
@@ -184,20 +117,6 @@ public class ChallengeInventory implements Listener {
                 Settings.settings.put(Settings.ItemType.DRAGON, Settings.ItemState.ENABLED);
                 Settings.setConfig(Settings.ItemType.DRAGON, Settings.ItemState.ENABLED);
                 inventory.setItem(10, Settings.getMenuItem(Settings.ItemType.DRAGON, Settings.ItemState.ENABLED));
-//                dragonDeath = true;
-//                Config.get().set("challenge.dragon", true);
-//                Config.save();
-//                ItemStack dragonDeath = new ItemBuilder(Material.DRAGON_HEAD)
-//                        .displayname(ChatColor.YELLOW + "Enderdrachen-Tod")
-//                        .lore(ChatColor.LIGHT_PURPLE + "Die Challenge ist beim Tod des Enderdrachens beendet.");
-//                ItemStack dragonDeath_i = new ItemStack(Material.DRAGON_HEAD);
-//                ItemMeta dragonDeath_m = dragonDeath_i.getItemMeta();
-//                dragonDeath_m.setDisplayName(ChatColor.YELLOW + "Enderdrachen-Tod");
-//                ArrayList<String> dragonDeath_lore = new ArrayList<>();
-//                dragonDeath_lore.add(ChatColor.LIGHT_PURPLE + "Die Challenge ist beim Tod des Enderdrachens beendet.");
-//                dragonDeath_m.setLore(dragonDeath_lore);
-//                dragonDeath_i.setItemMeta(dragonDeath_m);
-//                event.getInventory().setItem(0, dragonDeath_i);
                 Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_ACTIVATE);
                 p.updateInventory();
                 Bukkit.broadcastMessage(Main.getPrefix() + "Ende Enderdrache aktiviert");
