@@ -9,7 +9,6 @@ package dev.just.challenge.challenges;
 import dev.just.challenge.Main;
 import dev.just.challenge.commands.TimerCommand;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.ShortString;
 import dev.just.challenge.utils.Timer;
 import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
@@ -145,7 +144,7 @@ public class ForceEffectChallenge implements Listener {
             this.effectTypes.remove(upcoming);
             String effectNameBefore = effectType.getName();
             String[] effectNameSplit = effectNameBefore.split("_");
-            effectName = ShortString.run(effectNameSplit, false, true);
+            effectName = Utils.shortString(effectNameSplit, false, true);
         }
     }
 

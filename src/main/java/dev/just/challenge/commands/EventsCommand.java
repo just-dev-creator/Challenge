@@ -1,29 +1,24 @@
 /*
- * Copyright (c) 2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
 
 package dev.just.challenge.commands;
 
-import com.google.common.collect.Lists;
 import dev.just.challenge.Main;
 import dev.just.challenge.challenges.ForceBiome;
 import dev.just.challenge.inventorys.HubInventory;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.ShortString;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +84,7 @@ public class EventsCommand implements CommandExecutor, TabCompleter {
                     }
                     String biomeNameBefore = target.getKey().getKey();
                     String[] biomeNameSplit = biomeNameBefore.split("_");
-                    ForceBiome.biomName = ShortString.run(biomeNameSplit, true, true);
+                    ForceBiome.biomName = Utils.shortString(biomeNameSplit, true, true);
                     sender.sendMessage(Main.getCustomPrefix("ForceBiome") + "Biom erfolgreich auf " + ChatColor.GREEN + ForceBiome.biomName + ChatColor.DARK_GRAY + " geändert.");
                 } catch (Exception e) {
                     sender.sendMessage(Main.getCustomPrefix("ForceBiome") + "Du hast kein Biom angegeben.");

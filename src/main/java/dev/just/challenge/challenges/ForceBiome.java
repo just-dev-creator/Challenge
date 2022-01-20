@@ -9,7 +9,6 @@ package dev.just.challenge.challenges;
 import dev.just.challenge.Main;
 import dev.just.challenge.commands.TimerCommand;
 import dev.just.challenge.utils.Settings;
-import dev.just.challenge.utils.ShortString;
 import dev.just.challenge.utils.Timer;
 import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
@@ -118,7 +117,7 @@ public class ForceBiome implements Listener {
             this.biomes.remove(upcoming);
             String biomeNameBefore = biome.getKey().getKey();
             String[] biomeNameSplit = biomeNameBefore.split("_");
-            biomName = ShortString.run(biomeNameSplit, true, true);
+            biomName = Utils.shortString(biomeNameSplit, true, true);
         }
     }
 

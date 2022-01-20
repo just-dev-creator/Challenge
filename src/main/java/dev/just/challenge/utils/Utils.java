@@ -13,6 +13,8 @@ import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+
 public class Utils {
     public static void sendSettingsChange(Player player, String message) {
         for(Player all : Bukkit.getOnlinePlayers()) {
@@ -120,6 +122,35 @@ public class Utils {
             string = string + "0" + seconds;
         } else {
             string = string + seconds;
+        }
+        return string;
+    }
+
+    public static String shortString(String[] input, boolean uppercase, boolean removeLetters) {
+        String string;
+        if (input.length == 1) {
+            string = Arrays.toString(input);
+        } else if (input.length == 2) {
+            string = input[0] + " " + input[1];
+        } else if (input.length == 3) {
+            string = input[0] + " " + input[1] + " " + input[2];
+        } else if (input.length == 4) {
+            string = input[0] + " " + input[1] + " " + input[2] + " " + input[3];
+        } else if (input.length == 5) {
+            string = input[0] + " " + input[1] + " " + input[2] + " " + input[3] + input[4];
+        } else if (input.length >= 6) {
+            string = "String too long";
+        } else {
+            string = null;
+        }
+        if (uppercase) {
+            assert string != null;
+            string = string.toUpperCase();
+        }
+        if(removeLetters) {
+            assert string != null;
+            string = string.replace("[", "");
+            string = string.replace("]", "");
         }
         return string;
     }

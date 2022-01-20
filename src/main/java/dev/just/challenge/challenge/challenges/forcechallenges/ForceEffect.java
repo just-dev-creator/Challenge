@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -7,7 +7,7 @@
 package dev.just.challenge.challenge.challenges.forcechallenges;
 
 import dev.just.challenge.challenge.AbstractForceChallenge;
-import dev.just.challenge.utils.ShortString;
+import dev.just.challenge.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -87,7 +87,7 @@ public class ForceEffect extends AbstractForceChallenge {
         if (upcoming == null) return null;
         String effectNameBefore = ((PotionEffectType) upcoming).getName();
         String[] effectNameSplit = effectNameBefore.split("_");
-        return ShortString.run(effectNameSplit, false, true);
+        return Utils.shortString(effectNameSplit, false, true);
     }
 
     @Override
