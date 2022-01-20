@@ -96,20 +96,6 @@ public class ChallengeInventory implements Listener {
                 Settings.settings.put(Settings.ItemType.DRAGON, Settings.ItemState.DISABLED);
                 Settings.setConfig(Settings.ItemType.DRAGON, Settings.ItemState.DISABLED);
                 inventory.setItem(10, Settings.getMenuItem(Settings.ItemType.DRAGON, Settings.ItemState.DISABLED));
-//                dragonDeath = false;
-//                Config.get().set("challenge.dragon", false);
-//                Config.save();
-//                ItemStack dragonDeath = new ItemBuilder(Material.DRAGON_HEAD)
-//                        .displayname(ChatColor.GRAY + "Enderdrachen-Tod")
-//                        .lore(ChatColor.LIGHT_PURPLE + "Die Challenge ist beim Tod des Enderdrachens nicht beendet.");
-//                ItemStack dragonDeath_i = new ItemStack(Material.DRAGON_HEAD);
-//                ItemMeta dragonDeath_m = dragonDeath_i.getItemMeta();
-//                dragonDeath_m.setDisplayName(ChatColor.GRAY + "Enderdrachen-Tod");
-//                ArrayList<String> dragonDeath_lore = new ArrayList<>();
-//                dragonDeath_lore.add(ChatColor.LIGHT_PURPLE + "Die Challenge ist beim Tod des Enderdrachens nicht beendet.");
-//                dragonDeath_m.setLore(dragonDeath_lore);
-//                dragonDeath_i.setItemMeta(dragonDeath_m);
-//                event.getInventory().setItem(0, dragonDeath_i);
                 p.updateInventory();
                 Utils.broadcastSound(org.bukkit.Sound.BLOCK_BEACON_POWER_SELECT);
                 Bukkit.broadcastMessage(Main.getPrefix() + "Ende Enderdrache deaktiviert");
