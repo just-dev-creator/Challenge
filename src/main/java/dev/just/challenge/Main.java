@@ -1,13 +1,11 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
 
 package dev.just.challenge;
 
-import dev.just.challenge.beta.BetaCommand;
-import dev.just.challenge.beta.JoinEvent;
 import dev.just.challenge.challenge.inventory.InventoryCommand;
 import dev.just.challenge.challenges.*;
 import dev.just.challenge.commands.*;
@@ -120,7 +118,6 @@ public final class Main extends JavaPlugin {
         getCommand("gamemode").setExecutor(new GamemodeCommand());
         getCommand("gm").setExecutor(new GamemodeCommand());
         getCommand("dimension").setExecutor(new DimensionCommand());
-        getCommand("beta").setExecutor(new BetaCommand());
         getCommand("position").setExecutor(new PositionCommand());
         getCommand("oldevents").setExecutor(new InventoryCommand());
 
@@ -155,7 +152,6 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new MathChallenge(), this);
         pluginManager.registerEvents(new dev.just.challenge.challenges.MathChallenge(), this);
         pluginManager.registerEvents(new ForceBiome(), this);
-        pluginManager.registerEvents(new JoinEvent(), this);
         pluginManager.registerEvents(new OneLookChallenge(), this);
         pluginManager.registerEvents(new FacingChallenge(), this);
         pluginManager.registerEvents(new ForceEffectChallenge(), this);
