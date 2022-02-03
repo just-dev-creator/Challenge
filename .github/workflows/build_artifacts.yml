@@ -39,10 +39,6 @@ jobs:
         uses: just-dev-creator/install-paper@v1.0.1
         with:
           path: ./paperclip.jar
-      - name: Create JUtils configuration direcotry
-        run: mkdir -p plugins/JUtils
-      - name: Put license key
-        run: "echo LICENSE-KEY: ${{ secrets.PLUGIN_LICENSE_KEY }} > plugins/JUtils/license.yml"
       - name: Agree to EULA
         run: "echo eula=true > eula.txt"
       - name: Move plugin to folder
