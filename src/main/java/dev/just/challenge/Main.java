@@ -40,33 +40,25 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        try {
-            if (!LicenseSystem.getLicense(this)) {
-                Bukkit.getScheduler().cancelTasks(this);
-                Bukkit.getPluginManager().disablePlugin(this);
-                System.out.println(ChatColor.YELLOW + "Folgende Fehlermeldung ignorieren - Plugin ist komplett deaktiviert! ");
-            }
-        } finally {
-            // Plugin startup logic
-            TimerCommand.timer_active = false;
-            Settings.settings.clear();
-            registerEvents();
-            registerCommands();
-            Settings.setSettings();
-            if (Settings.settings.get(Settings.ItemType.PARCOUR).equals(Settings.ItemState.ENABLED)) {
-                ScoreboardManager.checkpoints();
-            }
-            loadTimer();
-            findVillage();
-            Bukkit.getScheduler().runTaskLater(this, new Runnable() {
-                @Override
-                public void run() {
-                    Timer.timer();
-                    ForceGleichungen.main();
-                }
-            }, 10);
-            GithubTests.stopServer();
+        // Plugin startup logic
+        TimerCommand.timer_active = false;
+        Settings.settings.clear();
+        registerEvents();
+        registerCommands();
+        Settings.setSettings();
+        if (Settings.settings.get(Settings.ItemType.PARCOUR).equals(Settings.ItemState.ENABLED)) {
+            ScoreboardManager.checkpoints();
         }
+        loadTimer();
+        findVillage();
+        Bukkit.getScheduler().runTaskLater(this, new Runnable() {
+            @Override
+            public void run() {
+                Timer.timer();
+                ForceGleichungen.main();
+            }
+        }, 10);
+        GithubTests.stopServer();
         ChallengeAPI.onLoad();
     }
 
