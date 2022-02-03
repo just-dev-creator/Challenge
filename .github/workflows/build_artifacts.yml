@@ -41,6 +41,8 @@ jobs:
           path: ./paperclip.jar
       - name: Agree to EULA
         run: "echo eula=true > eula.txt"
+      - name: Create plugins directory
+        run: mkdir plugins
       - name: Move plugin to folder
         run: "mv ./Challenge-*.jar ./plugins"
       - name: Enable testing mode
