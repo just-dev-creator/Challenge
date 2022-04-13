@@ -14,6 +14,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 public class Utils {
     public static void sendSettingsChange(Player player, String message) {
@@ -153,5 +154,9 @@ public class Utils {
             string = string.replace("]", "");
         }
         return string;
+    }
+
+    public static Collection<? extends Player> getActivePlayers() {
+        return Bukkit.getOnlinePlayers();
     }
 }
