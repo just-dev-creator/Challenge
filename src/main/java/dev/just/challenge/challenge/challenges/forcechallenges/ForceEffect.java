@@ -24,12 +24,12 @@ public class ForceEffect extends AbstractForceChallenge {
 
     @Override
     public void onEnable() {
-        Bukkit.getLogger().info(ChatColor.YELLOW + "Enabld");
+        this.log("Die Challenge wurde aktiviert. ");
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getLogger().info(ChatColor.YELLOW + "Disabled");
+        this.log("Die Challenge wurde deaktiviert. ");
     }
 
     @Override
