@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -118,5 +118,9 @@ public abstract class AbstractChallenge {
 
     public boolean isActive() {
         return this.isEnabled && Timer.isRunning();
+    }
+
+    public void log(String msg) {
+        Bukkit.getLogger().info(Main.getCustomPrefix(this.name) + msg);
     }
 }

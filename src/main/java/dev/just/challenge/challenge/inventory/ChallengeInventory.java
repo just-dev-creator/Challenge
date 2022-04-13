@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -38,20 +38,14 @@ public class ChallengeInventory implements Listener {
             }
             int i = 0;
             for (InventoryPage page : pages) {
-                System.out.println(page.getTitle() + " - " + i);
                 if (i >= 1) {
                     page.setBefore(pages.get(i - 1));
                     pages.set(i, page);
-                    System.out.println("Set before");
                 }
                 if (pages.size() - 1 >= i + 1 ) {
-                    System.out.println("Setting after");
-                    System.out.println(pages.get(i + 1).getTitle());
                     page.setAfter(pages.get(i + 1));
                     pages.set(i, page);
-                    System.out.println("Set after");
                 }
-                System.out.println(pages.size() + " | " + pages.get(i).getTitle());
                 i++;
             }
             return pages.get(0).getInventory();

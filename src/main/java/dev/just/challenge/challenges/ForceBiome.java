@@ -108,7 +108,7 @@ public class ForceBiome implements Listener {
             Biome[] arrayofBiome;
             for (j = (arrayofBiome = Biome.values()).length, b1 = 0; b1 < j; ) {
                 Biome biom = arrayofBiome[b1];
-                if (biom != Biome.TALL_BIRCH_FOREST && biom != Biome.TALL_BIRCH_HILLS && biom != Biome.END_BARRENS && biom != Biome.END_HIGHLANDS && biom != Biome.END_MIDLANDS)
+                if (biom != Biome.END_BARRENS && biom != Biome.END_HIGHLANDS && biom != Biome.END_MIDLANDS)
                     biomes.add(Biome.valueOf(biom.toString()));
                 b1++;
             }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2021. justCoding
+ * Copyright (c) 2021-2022. justCoding
  * All rights reserved.
  * You may not copy, modify, distribute or decompile this code without the written permission of the author.
  */
@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class InventoryPage implements Listener {
     private final int number;
@@ -163,8 +162,9 @@ public class InventoryPage implements Listener {
         if (event.getCurrentItem() == null) return;
         HumanEntity player = event.getWhoClicked();
         event.setCancelled(true);
-        if (Objects.requireNonNull(Objects.requireNonNull(event.getCurrentItem().getItemMeta()).
-                getLore()).get(0).contains(" | ")) {
+        if (event.getCurrentItem().getItemMeta() != null && event.getCurrentItem().getItemMeta().getLore() != null &&
+                event.getCurrentItem().getItemMeta().
+                getLore().get(0).contains(" | ")) {
             for (AbstractChallenge entry : this.entries) {
                 if (!(entry instanceof AbstractOptionChallenge)) return;
                 AbstractOptionChallenge challenge = (AbstractOptionChallenge) entry;
